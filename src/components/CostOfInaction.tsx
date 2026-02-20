@@ -1,29 +1,31 @@
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { AlertTriangle, UserMinus, TrendingDown } from "lucide-react";
+import { AlertTriangle, UserMinus, TrendingDown, ShieldAlert } from "lucide-react";
 
-const cards = [
+const bullets = [
   {
-    icon: AlertTriangle,
-    title: "Sucessão em Risco",
+    icon: ShieldAlert,
+    title: "Risco estrutural de sucessão",
     description:
-      "A perda de um executivo-chave custa até 213% do seu salário anual.",
-    source: "Dados: SHRM",
+      "A perda de um executivo-chave pode custar até 213% do salário anual (SHRM) e atrasar projetos estratégicos em meses.",
   },
   {
     icon: UserMinus,
-    title: "Fuga de Talentos",
+    title: "Dificuldade de retenção e atração",
     description:
-      "Empresas sem DHO estratégico perdem 30% mais talentos para o mercado.",
-    source: "Dados: Gallup",
+      "Empresas sem práticas sólidas de DHO perdem até 30% a mais de talentos de mercado (Gallup).",
   },
   {
     icon: TrendingDown,
-    title: "Decisões no Escuro",
+    title: "Cultura estagnada",
     description:
-      "RH no piloto automático transforma investimento em custo sem retorno.",
-    source: "",
+      "Falta de evolução gera até 20% de queda na produtividade e reduz a capacidade de inovação.",
+  },
+  {
+    icon: AlertTriangle,
+    title: "Lideranças despreparadas",
+    description:
+      "Sem KPIs claros, líderes travam resultados e reduzem em até 30% a performance das equipes.",
   },
 ];
 
@@ -33,43 +35,36 @@ const CostOfInaction = () => {
 
   return (
     <section ref={ref} className="section-padding">
-      <div className="container mx-auto">
+      <div className="container mx-auto max-w-4xl">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
-          <p className="text-primary text-sm font-semibold uppercase tracking-widest mb-4">
-            O custo da inação
-          </p>
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-balance">
-            O risco estrutural que{" "}
-            <span className="glow-text">não aparece no balanço.</span>
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-balance text-foreground">
+            O Custo da <span className="glow-text">Inação</span>
           </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {cards.map((card, index) => (
+        <div className="space-y-5">
+          {bullets.map((item, index) => (
             <motion.div
-              key={card.title}
-              initial={{ opacity: 0, y: 40 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: index * 0.15 }}
-              className="glass-card-hover p-8 flex flex-col"
+              key={item.title}
+              initial={{ opacity: 0, x: -30 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.5, delay: index * 0.12 }}
+              className="flex items-start gap-5 glass-card p-6"
             >
-              <div className="w-12 h-12 rounded-xl bg-destructive/10 flex items-center justify-center mb-6">
-                <card.icon className="w-6 h-6 text-destructive" />
+              <div className="w-10 h-10 rounded-lg bg-destructive/10 flex items-center justify-center shrink-0 mt-0.5">
+                <item.icon className="w-5 h-5 text-destructive" />
               </div>
-              <h3 className="text-xl font-bold mb-3">{card.title}</h3>
-              <p className="text-muted-foreground leading-relaxed flex-1">
-                {card.description}
-              </p>
-              {card.source && (
-                <p className="text-xs text-muted-foreground/60 mt-4 font-medium">
-                  {card.source}
+              <div>
+                <h3 className="font-bold text-foreground mb-1">{item.title}</h3>
+                <p className="text-muted-foreground leading-relaxed text-sm">
+                  {item.description}
                 </p>
-              )}
+              </div>
             </motion.div>
           ))}
         </div>
