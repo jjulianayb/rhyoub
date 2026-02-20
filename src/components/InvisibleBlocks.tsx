@@ -28,7 +28,7 @@ const InvisibleBlocks = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} className="section-padding bg-secondary/30">
+    <section id="diagnostico" ref={ref} className="section-padding bg-secondary/30">
       <div className="container mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
