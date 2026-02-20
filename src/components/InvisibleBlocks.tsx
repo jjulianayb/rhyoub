@@ -1,25 +1,27 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Unplug, Cog, EyeOff } from "lucide-react";
+import cardDisconnected from "@/assets/card-disconnected.jpg";
+import cardAutopilot from "@/assets/card-autopilot.jpg";
+import cardDarkDecisions from "@/assets/card-dark-decisions.jpg";
 
 const cards = [
   {
-    icon: Unplug,
+    image: cardDisconnected,
     title: "Desenvolvimento desconectado",
     description:
-      "Iniciativas isoladas que não geram impacto real. Consultorias padronizadas, sem conexão com a cultura e realidade do negócio, transformam investimento em custo sem retorno.",
+      "Iniciativas isoladas que não geram impacto real. Consultorias padronizadas transformam investimento em custo sem retorno.",
   },
   {
-    icon: Cog,
-    title: "Gestão de pessoas no piloto automático",
+    image: cardAutopilot,
+    title: "Gestão no piloto automático",
     description:
-      "RH sobrecarregado, preso no operacional. As dores ocultas aparecem na dificuldade de reter talentos, na cultura contaminada por padrões antigos e na estagnação do negócio.",
+      "RH sobrecarregado, preso no operacional. Dificuldade de reter talentos e cultura estagnada.",
   },
   {
-    icon: EyeOff,
+    image: cardDarkDecisions,
     title: "Decisões no escuro",
     description:
-      "Tecnologias mal aplicadas e dados pouco confiáveis viram ruído em vez de estratégia. O resultado: decisões frágeis, colaboradores insatisfeitos e marca empregadora enfraquecida.",
+      "Tecnologias mal aplicadas viram ruído. Decisões frágeis e marca empregadora enfraquecida.",
   },
 ];
 
@@ -51,15 +53,22 @@ const InvisibleBlocks = () => {
               initial={{ opacity: 0, y: 40 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.15 }}
-              className="glass-card-hover p-8 flex flex-col"
+              className="glass-card-hover overflow-hidden flex flex-col"
             >
-              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-6">
-                <card.icon className="w-6 h-6 text-primary" />
+              <div className="h-48 overflow-hidden">
+                <img
+                  src={card.image}
+                  alt={card.title}
+                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                  loading="lazy"
+                />
               </div>
-              <h3 className="text-xl font-bold mb-3 text-foreground">{card.title}</h3>
-              <p className="text-muted-foreground leading-relaxed flex-1">
-                {card.description}
-              </p>
+              <div className="p-8 flex flex-col flex-1">
+                <h3 className="text-xl font-bold mb-3 text-foreground">{card.title}</h3>
+                <p className="text-muted-foreground leading-relaxed flex-1">
+                  {card.description}
+                </p>
+              </div>
             </motion.div>
           ))}
         </div>
