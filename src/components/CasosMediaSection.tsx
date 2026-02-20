@@ -5,6 +5,7 @@ import Testimonials from "./Testimonials";
 
 import logoIg from "@/assets/logos/ig-egobrazil.png";
 import logoBrasilAgora from "@/assets/logos/brasil-agora.png";
+import imgValor from "@/assets/media/valor-sustentabilidade.jpg";
 import imgEgo from "@/assets/media/ego-ia-empregos.jpg";
 import imgFrisson from "@/assets/media/frisson-carreira.jpg";
 import imgBrasilAgora from "@/assets/media/brasil-agora-lideranca.jpg";
@@ -12,13 +13,13 @@ import imgBrasilAgora from "@/assets/media/brasil-agora-lideranca.jpg";
 const articles = [
   {
     source: "Valor Econômico",
-    logo: null as string | null, // text logo
+    logo: "valor" as string | null,
     category: "Gestão",
     readTime: "4min de leitura",
     title: "Sustentabilidade organizacional além do discurso",
     description: "Como a liderança pode garantir perenidade e resultados com práticas de desenvolvimento sustentável.",
     link: "https://valorbusiness.com.br/sustentabilidade-organizacional-alem-do-discurso-como-a-lideranca-pode-garantir-perenidade-e-resultados/",
-    image: imgFrisson, // shared image since Valor article image unavailable
+    image: imgValor,
     featured: true,
   },
   {
@@ -57,6 +58,13 @@ const articles = [
 ];
 
 const SourceLogo = ({ article }: { article: (typeof articles)[0] }) => {
+  if (article.logo === "valor") {
+    return (
+      <span className="text-xs font-extrabold tracking-tight" style={{ color: "#006B3F" }}>
+        Valor Econômico
+      </span>
+    );
+  }
   if (article.logo) {
     return (
       <img
