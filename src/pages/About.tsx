@@ -1,6 +1,65 @@
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { Link } from "react-router-dom";
+import { useRef, useEffect, useState, useCallback } from "react";
 import { ChevronRight, ArrowRight, ExternalLink, Target, FlaskConical, Sprout, Search, PenTool, Users, BarChart3 } from "lucide-react";
+
+const useCountUp = (end: number, duration = 2000, startOnView = false, inView = true) => {
+  const [count, setCount] = useState(0);
+  const hasRun = useRef(false);
+
+  useEffect(() => {
+    if (!inView || hasRun.current) return;
+    hasRun.current = true;
+    const start = 0;
+    const startTime = performance.now();
+
+    const tick = (now: number) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3); // easeOutCubic
+      setCount(Math.round(start + (end - start) * eased));
+      if (progress < 1) requestAnimationFrame(tick);
+    };
+
+    requestAnimationFrame(tick);
+  }, [end, duration, inView]);
+
+  return count;
+};
+
+const CountUpStat = ({ value, label, delay }: { value: string; label: string; delay: number }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+
+  // Parse numeric part and prefix/suffix
+  const match = value.match(/^([+]?)(\d[\d.,]*)([+]?)$/);
+  const prefix = match?.[1] || "";
+  const numericStr = match?.[2]?.replace(/[.,]/g, "") || "0";
+  const suffix = match?.[3] || "";
+  const numericEnd = parseInt(numericStr, 10);
+
+  const count = useCountUp(numericEnd, 2000, true, isInView);
+
+  const formatted = numericEnd >= 1000
+    ? count.toLocaleString("pt-BR")
+    : String(count);
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, scale: 0.9 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.4, delay }}
+      className="text-center"
+    >
+      <p className="text-4xl md:text-5xl font-bold text-primary-foreground mb-2">
+        {prefix}{formatted}{suffix}
+      </p>
+      <p className="text-sm text-primary-foreground/70">{label}</p>
+    </motion.div>
+  );
+};
 
 const WHATSAPP_LINK = "https://wa.me/5521991417327?text=Olá,%20vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20sessão%20estratégica.";
 
@@ -211,17 +270,7 @@ const About = () => {
           </motion.div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, i) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.1 }}
-                className="text-center"
-              >
-                <p className="text-4xl md:text-5xl font-bold text-primary-foreground mb-2">{stat.value}</p>
-                <p className="text-sm text-primary-foreground/70">{stat.label}</p>
-              </motion.div>
+              <CountUpStat key={stat.label} value={stat.value} label={stat.label} delay={i * 0.1} />
             ))}
           </div>
         </div>
