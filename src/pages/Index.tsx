@@ -1,18 +1,14 @@
 import Hero from "@/components/Hero";
+import WhoWeAre from "@/components/WhoWeAre";
 import ChooseYourPain from "@/components/ChooseYourPain";
-import InvisibleBlocks from "@/components/InvisibleBlocks";
-import CostOfInaction from "@/components/CostOfInaction";
-import OurResponse from "@/components/OurResponse";
 import CasosMediaSection from "@/components/CasosMediaSection";
 
 const Index = () => {
   return (
     <main>
       <Hero />
+      <WhoWeAre />
       <ChooseYourPain />
-      <InvisibleBlocks />
-      <CostOfInaction />
-      <OurResponse />
       <CasosMediaSection />
     </main>
   );
