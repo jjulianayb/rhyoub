@@ -1,6 +1,48 @@
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import campusImage from "@/assets/campus-youb.jpg";
+
+const useCountUp = (end: number, duration = 2000, inView = false) => {
+  const [count, setCount] = useState(0);
+  const hasRun = useRef(false);
+  useEffect(() => {
+    if (!inView || hasRun.current) return;
+    hasRun.current = true;
+    const startTime = performance.now();
+    const tick = (now: number) => {
+      const progress = Math.min((now - startTime) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.round(end * eased));
+      if (progress < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }, [end, duration, inView]);
+  return count;
+};
+
+const StatRow = ({ inView }: { inView: boolean }) => {
+  const pros = useCountUp(11000, 2000, inView);
+  const years = useCountUp(8, 1500, inView);
+  const companies = useCountUp(50, 1800, inView);
+  return (
+    <div className="mt-8 flex items-center gap-8">
+      <div>
+        <p className="text-3xl font-bold text-primary">{pros.toLocaleString("pt-BR")}+</p>
+        <p className="text-xs text-muted-foreground mt-1">profissionais impactados</p>
+      </div>
+      <div className="w-px h-10 bg-border" />
+      <div>
+        <p className="text-3xl font-bold text-primary">{years}+</p>
+        <p className="text-xs text-muted-foreground mt-1">anos de atuação</p>
+      </div>
+      <div className="w-px h-10 bg-border" />
+      <div>
+        <p className="text-3xl font-bold text-primary">{companies}+</p>
+        <p className="text-xs text-muted-foreground mt-1">empresas atendidas</p>
+      </div>
+    </div>
+  );
+};
 
 const WhoWeAre = () => {
   const ref = useRef(null);
@@ -33,22 +75,7 @@ const WhoWeAre = () => {
                 Atuamos de forma integrada em três frentes — <strong className="text-foreground">Educação Executiva</strong>, <strong className="text-foreground">Consultoria Estratégica</strong> e <strong className="text-foreground">Tecnologia & IA</strong> — para ampliar o impacto e promover o desenvolvimento de pessoas, organizações e resultados.
               </p>
             </div>
-            <div className="mt-8 flex items-center gap-8">
-              <div>
-                <p className="text-3xl font-bold text-primary">11.000+</p>
-                <p className="text-xs text-muted-foreground mt-1">profissionais impactados</p>
-              </div>
-              <div className="w-px h-10 bg-border" />
-              <div>
-                <p className="text-3xl font-bold text-primary">8+</p>
-                <p className="text-xs text-muted-foreground mt-1">anos de atuação</p>
-              </div>
-              <div className="w-px h-10 bg-border" />
-              <div>
-                <p className="text-3xl font-bold text-primary">50+</p>
-                <p className="text-xs text-muted-foreground mt-1">empresas atendidas</p>
-              </div>
-            </div>
+            <StatRow inView={isInView} />
           </motion.div>
 
           {/* Image */}
