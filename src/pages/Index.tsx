@@ -1,9 +1,10 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import InvisibleBlocks from "@/components/InvisibleBlocks";
 import CostOfInaction from "@/components/CostOfInaction";
-import Ecosystem from "@/components/Ecosystem";
-import SocialProof from "@/components/SocialProof";
-import PricingCards from "@/components/PricingCards";
+import EcosystemNav from "@/components/EcosystemNav";
+import WhoWeAre from "@/components/WhoWeAre";
+import SolutionSections from "@/components/SolutionSections";
 import Footer from "@/components/Footer";
 import FloatingChatbot from "@/components/FloatingChatbot";
 
@@ -12,10 +13,11 @@ const Index = () => {
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
       <Hero />
+      <InvisibleBlocks />
       <CostOfInaction />
-      <Ecosystem />
-      <SocialProof />
-      <PricingCards />
+      <EcosystemNav />
+      <WhoWeAre />
+      <SolutionSections />
       <Footer />
       <FloatingChatbot />
     </div>

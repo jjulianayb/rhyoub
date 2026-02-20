@@ -12,14 +12,14 @@ const Navbar = () => {
       className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 backdrop-blur-xl bg-background/80"
     >
       <div className="container mx-auto flex items-center justify-between h-16 px-6">
-        <a href="/" className="text-2xl font-bold tracking-tight">
+        <a href="/" className="text-2xl font-bold tracking-tight text-foreground">
           you<span className="text-primary">B</span><span className="text-primary">.</span>
         </a>
         <a
           href={WHATSAPP_LINK}
           target="_blank"
           rel="noopener noreferrer"
-          className="group flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 hover:shadow-[0_0_30px_-5px_hsl(var(--primary)/0.5)]"
+          className="group flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-primary/20"
         >
           Agendar Sessão
           <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
