@@ -40,7 +40,7 @@ const CountUpStat = ({ value, label, delay }: { value: string; label: string; de
 
   const count = useCountUp(numericEnd, 2000, true, isInView);
 
-  const formatted = numericEnd >= 1000
+  const formatted = numericEnd >= 1000 && numericEnd < 1900 || numericEnd > 2100
     ? count.toLocaleString("pt-BR")
     : String(count);
 
