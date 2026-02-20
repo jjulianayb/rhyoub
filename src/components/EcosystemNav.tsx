@@ -19,7 +19,7 @@ const EcosystemNav = () => {
   };
 
   return (
-    <section ref={ref} className="section-padding bg-secondary/30">
+    <section id="solucoes" ref={ref} className="section-padding bg-secondary/30">
       <div className="container mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
