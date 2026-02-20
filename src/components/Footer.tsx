@@ -9,7 +9,7 @@ const Footer = () => {
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   return (
-    <footer ref={ref} className="border-t border-border">
+    <footer id="contato" ref={ref} className="border-t border-border">
       {/* Anchor quote */}
       <div className="section-padding pb-16">
         <motion.p
