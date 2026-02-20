@@ -6,15 +6,6 @@ const WHATSAPP_BASE = "https://wa.me/5521991417327?text=";
 
 const solutions = [
   {
-    id: "academias",
-    title: "Academias Corporativas & Programas de Liderança",
-    pain: "Se você sente que faz muitos treinamentos, mas pouca coisa muda na prática, você não está só.",
-    explanation:
-      "Desenhamos Learning Journeys e Academias Corporativas alinhadas à estratégia do negócio, integrando encontros ao vivo, prática e tecnologia. Nada de pacote pronto e genérico.",
-    cta: "Quero estruturar uma Academia de Liderança",
-    whatsapp: encodeURIComponent("Olá, quero estruturar uma Academia de Liderança."),
-  },
-  {
     id: "consultoria",
     title: "Consultoria Estratégica & Projetos de DHO",
     pain: "Falta um DHO estruturado, políticas claras, papéis definidos e uma visão de longo prazo para pessoas.",
@@ -52,7 +43,7 @@ const solutions = [
   },
 ];
 
-const SolutionBlock = ({ solution, index }: { solution: typeof solutions[0]; index: number }) => {
+const SolutionBlock = ({ solution, index }: { solution: (typeof solutions)[0]; index: number }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
   const isEven = index % 2 === 0;
@@ -70,7 +61,7 @@ const SolutionBlock = ({ solution, index }: { solution: typeof solutions[0]; ind
           transition={{ duration: 0.6 }}
         >
           <p className="text-primary text-sm font-semibold uppercase tracking-widest mb-4">
-            Solução {index + 1}
+            Solução {index + 2}
           </p>
           <h2 className="text-2xl md:text-4xl font-bold tracking-tight mb-8 text-foreground">
             {solution.title}
