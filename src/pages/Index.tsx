@@ -3,7 +3,9 @@ import Hero from "@/components/Hero";
 import InvisibleBlocks from "@/components/InvisibleBlocks";
 import CostOfInaction from "@/components/CostOfInaction";
 import EcosystemNav from "@/components/EcosystemNav";
+import TrustSection from "@/components/TrustSection";
 import WhoWeAre from "@/components/WhoWeAre";
+import MediaSection from "@/components/MediaSection";
 import AcademiasSection from "@/components/AcademiasSection";
 import SolutionSections from "@/components/SolutionSections";
 import Footer from "@/components/Footer";
@@ -17,7 +19,9 @@ const Index = () => {
       <InvisibleBlocks />
       <CostOfInaction />
       <EcosystemNav />
+      <TrustSection />
       <WhoWeAre />
+      <MediaSection />
       <AcademiasSection />
       <SolutionSections />
       <Footer />

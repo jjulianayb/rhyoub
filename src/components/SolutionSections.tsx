@@ -2,6 +2,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { ArrowRight } from "lucide-react";
 import ScenarioSimulator from "./ScenarioSimulator";
+import MediaBlock from "./MediaBlock";
 
 const WHATSAPP_BASE = "https://wa.me/5521991417327?text=";
 
@@ -14,6 +15,17 @@ const solutions = [
       "Apoiamos o board e o RH na construção de planos de carreira, EVP, código de cultura, políticas de RH e governança. Traduzimos a estratégia de pessoas em processos vivos, não em manuais engavetados.",
     cta: "Preciso estruturar o DHO da minha empresa",
     whatsapp: encodeURIComponent("Olá, preciso estruturar o DHO da minha empresa."),
+    media: {
+      title: "Sustentabilidade organizacional em foco",
+      text: "A nossa visão sobre liderança, perenidade e resultados foi tema de um artigo na Valor Business. Essa é a base da nossa atuação em projetos de DHO e consultoria estratégica.",
+      links: [
+        {
+          label: "Ler artigo na Valor Business",
+          url: "https://valorbusiness.com.br/sustentabilidade-organizacional-alem-do-discurso-como-a-lideranca-pode-garantir-perenidade-e-resultados/",
+          isButton: true,
+        },
+      ],
+    },
   },
   {
     id: "carreira",
@@ -41,10 +53,28 @@ const solutions = [
       "Nosso ecossistema digital combina LMS intuitivo, gamificação, trilhas de aprendizado e uma IA mentora que apoia líderes e times com recomendações e conteúdos sob medida.",
     cta: "Quero conhecer o ecossistema digital youB",
     whatsapp: encodeURIComponent("Olá, quero conhecer o ecossistema digital youB."),
+    media: {
+      title: "IA, carreira e futuro do trabalho",
+      text: "IA, plano de carreira e salário emocional já são pauta central nas decisões de gente e gestão. Nossa forma de integrar tecnologia e DHO foi destaque em diferentes portais.",
+      links: [
+        {
+          label: "Matéria no Ego Brazil sobre IA e o futuro do trabalho",
+          url: "https://egobrazil.ig.com.br/ate-2026-a-inteligencia-artificial-deve-substituir-85-milhoes-de-empregos-no-mundo/",
+          isButton: false,
+        },
+        {
+          label: "Reportagem na Frisson Online sobre IA, plano de carreira e salário emocional",
+          url: "https://www.frissononline.com.br/noticias/164892/ia-plano-de-carreira-e-salario-emocional-sao-novas-exigencias-do-mercado",
+          isButton: false,
+        },
+      ],
+    },
   },
 ];
 
-const SolutionBlock = ({ solution, index }: { solution: (typeof solutions)[0]; index: number }) => {
+type Solution = (typeof solutions)[0];
+
+const SolutionBlock = ({ solution, index }: { solution: Solution; index: number }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
   const isEven = index % 2 === 0;
@@ -75,14 +105,12 @@ const SolutionBlock = ({ solution, index }: { solution: (typeof solutions)[0]; i
                 "{solution.pain}"
               </p>
             </div>
-
             <div>
               <p className="text-foreground font-semibold mb-2 text-lg">Nossa abordagem:</p>
               <p className="text-muted-foreground leading-relaxed">
                 {solution.explanation}
               </p>
             </div>
-
             <a
               href={`${WHATSAPP_BASE}${solution.whatsapp}`}
               target="_blank"
@@ -94,7 +122,16 @@ const SolutionBlock = ({ solution, index }: { solution: (typeof solutions)[0]; i
             </a>
           </div>
 
-          <ScenarioSimulator solutionName={solution.title} />
+          <div className="space-y-8">
+            <ScenarioSimulator solutionName={solution.title} />
+            {solution.media && (
+              <MediaBlock
+                title={solution.media.title}
+                text={solution.media.text}
+                links={solution.media.links}
+              />
+            )}
+          </div>
         </motion.div>
       </div>
     </section>
