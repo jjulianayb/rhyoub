@@ -50,25 +50,29 @@ const CasosMediaSection = () => {
   const rest = articles.filter((a) => !a.featured);
 
   return (
-    <section id="casos-midia" ref={ref} className="section-padding bg-secondary/20">
+    <section id="casos-midia" ref={ref} className="section-padding bg-background">
       <div className="container mx-auto">
+        {/* Portal header — FDC style */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="mb-12"
+          className="mb-8"
         >
-          <p className="text-primary text-sm font-semibold uppercase tracking-widest mb-4">
+          <p className="text-primary text-sm font-semibold uppercase tracking-widest mb-2">
             Portal youB
           </p>
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
-            Seja Relevante
+            Be Move
           </h2>
         </motion.div>
 
-        {/* FDC-style blog grid: 1 featured + 3 side cards */}
-        <div className="grid lg:grid-cols-2 gap-6 mb-16">
-          {/* Featured article */}
+        {/* Divider */}
+        <div className="w-full h-px bg-border mb-10" />
+
+        {/* FDC-style portal grid: 1 featured left + 3 stacked right */}
+        <div className="grid lg:grid-cols-5 gap-8 mb-16">
+          {/* Featured article — large card */}
           {featured && (
             <motion.a
               href={featured.link}
@@ -77,31 +81,35 @@ const CasosMediaSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5 }}
-              className="group glass-card overflow-hidden flex flex-col hover:shadow-lg hover:border-primary/30 transition-all duration-300"
+              className="group lg:col-span-3 flex flex-col"
             >
-              <div className="h-56 bg-gradient-to-br from-primary/20 via-primary/10 to-accent/10 flex items-center justify-center">
-                <span className="text-6xl font-bold text-primary/20">youB</span>
+              {/* Image placeholder */}
+              <div className="aspect-[16/9] rounded-xl bg-gradient-to-br from-primary/15 via-accent/10 to-secondary overflow-hidden flex items-center justify-center mb-5">
+                <span className="text-5xl font-extrabold text-primary/15 select-none">youB</span>
               </div>
-              <div className="p-6 flex-1 flex flex-col">
-                <div className="flex items-center gap-3 mb-3">
-                  <span className="text-[11px] font-semibold text-primary uppercase tracking-wider">{featured.category}</span>
-                  <span className="text-[11px] text-muted-foreground">{featured.readTime}</span>
-                </div>
-                <h3 className="text-xl font-bold text-foreground leading-snug mb-3 group-hover:text-primary transition-colors">
-                  {featured.title}
-                </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed flex-1">
-                  {featured.description}
-                </p>
-                <span className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground group-hover:text-primary transition-colors mt-4">
-                  Ler matéria <ExternalLink className="w-3 h-3" />
+
+              <div className="flex items-center gap-3 mb-3">
+                <span className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-[11px] font-semibold text-primary uppercase tracking-wider">
+                  {featured.source}
                 </span>
+                <span className="text-[11px] text-muted-foreground">{featured.category}</span>
+                <span className="text-[11px] text-muted-foreground">{featured.readTime}</span>
               </div>
+
+              <h3 className="text-xl md:text-2xl font-bold text-foreground leading-snug mb-2 group-hover:text-primary transition-colors">
+                {featured.title}
+              </h3>
+              <p className="text-sm text-muted-foreground leading-relaxed mb-3">
+                {featured.description}
+              </p>
+              <span className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground group-hover:text-primary transition-colors">
+                Ler matéria <ExternalLink className="w-3 h-3" />
+              </span>
             </motion.a>
           )}
 
-          {/* Side articles */}
-          <div className="flex flex-col gap-4">
+          {/* Side articles — stacked list */}
+          <div className="lg:col-span-2 flex flex-col gap-6">
             {rest.map((article, i) => (
               <motion.a
                 key={article.link}
@@ -111,20 +119,21 @@ const CasosMediaSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.4, delay: 0.15 + i * 0.08 }}
-                className="group glass-card p-5 flex gap-5 items-start hover:shadow-md hover:border-primary/30 transition-all duration-300"
+                className="group flex flex-col pb-6 border-b border-border last:border-b-0 last:pb-0"
               >
-                <div className="w-24 h-20 rounded-lg bg-gradient-to-br from-primary/15 to-accent/10 shrink-0 flex items-center justify-center">
-                  <span className="text-lg font-bold text-primary/30">youB</span>
+                <div className="flex items-center gap-3 mb-2">
+                  <span className="inline-flex items-center rounded-full bg-primary/10 px-2.5 py-0.5 text-[10px] font-semibold text-primary uppercase tracking-wider">
+                    {article.source}
+                  </span>
+                  <span className="text-[10px] text-muted-foreground">{article.category}</span>
+                  <span className="text-[10px] text-muted-foreground">{article.readTime}</span>
                 </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-3 mb-1.5">
-                    <span className="text-[11px] font-semibold text-primary uppercase tracking-wider">{article.category}</span>
-                    <span className="text-[11px] text-muted-foreground">{article.readTime}</span>
-                  </div>
-                  <h4 className="text-sm font-bold text-foreground leading-snug group-hover:text-primary transition-colors">
-                    {article.title}
-                  </h4>
-                </div>
+                <h4 className="text-sm font-bold text-foreground leading-snug group-hover:text-primary transition-colors mb-1">
+                  {article.title}
+                </h4>
+                <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2">
+                  {article.description}
+                </p>
               </motion.a>
             ))}
           </div>
