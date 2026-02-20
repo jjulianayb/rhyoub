@@ -1,6 +1,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { ArrowRight } from "lucide-react";
+import ScenarioSimulator from "./ScenarioSimulator";
 
 const WHATSAPP_BASE = "https://wa.me/5521991417327?text=";
 
@@ -67,7 +68,7 @@ const SolutionBlock = ({ solution, index }: { solution: (typeof solutions)[0]; i
             {solution.title}
           </h2>
 
-          <div className="glass-card p-8 md:p-10 space-y-6">
+          <div className="glass-card p-8 md:p-10 space-y-6 mb-8">
             <div>
               <p className="text-foreground font-semibold mb-2 text-lg">A dor:</p>
               <p className="text-muted-foreground leading-relaxed italic">
@@ -92,6 +93,8 @@ const SolutionBlock = ({ solution, index }: { solution: (typeof solutions)[0]; i
               <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
             </a>
           </div>
+
+          <ScenarioSimulator solutionName={solution.title} />
         </motion.div>
       </div>
     </section>
