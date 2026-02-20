@@ -10,58 +10,49 @@ const Footer = () => {
 
   return (
     <footer id="contato" ref={ref} className="border-t border-border">
-      {/* Anchor quote */}
-      <div className="section-padding pb-16">
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center text-xl md:text-2xl italic text-muted-foreground max-w-3xl mx-auto leading-relaxed"
-        >
-          "O maior ativo de uma organização é a sua capacidade de aprender mais rápido do que a concorrência."
-        </motion.p>
-      </div>
-
       {/* CTA Banner */}
-      <div className="py-16 px-6 relative overflow-hidden bg-secondary/30">
+      <div className="py-20 px-6 relative overflow-hidden bg-primary">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(262_83%_68%/0.3)_0%,transparent_70%)]" />
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0.6 }}
           className="container mx-auto text-center relative z-10"
         >
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-8 text-balance text-foreground">
-            O próximo passo para blindar o{" "}
-            <span className="glow-text">futuro do seu negócio.</span>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-primary-foreground">
+            O próximo passo para blindar o futuro do seu negócio.
           </h2>
+          <p className="text-primary-foreground/80 mb-8 max-w-lg mx-auto">
+            Agende uma sessão estratégica com nossos consultores e descubra como a youB pode transformar sua organização.
+          </p>
           <a
             href={WHATSAPP_LINK}
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-3 bg-primary text-primary-foreground px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-primary/20"
+            className="group inline-flex items-center gap-2 bg-white text-primary px-7 py-3.5 rounded-lg text-sm font-semibold transition-all hover:bg-white/90 hover:shadow-lg"
           >
             Agendar Sessão Estratégica
-            <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
           </a>
         </motion.div>
       </div>
 
       {/* Footer info */}
-      <div className="border-t border-border py-10 px-6">
-        <div className="container mx-auto flex flex-col items-center gap-6 text-sm text-muted-foreground text-center">
-          <p className="font-semibold text-foreground text-lg">
+      <div className="py-10 px-6 bg-foreground">
+        <div className="container mx-auto flex flex-col items-center gap-6 text-sm text-center">
+          <p className="font-bold text-background text-lg">
             you<span className="text-primary">B</span>.
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-background/60">
             <span>Site: <a href="https://www.rhyoub.com.br" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">www.rhyoub.com.br</a></span>
             <span>E-mail: contato@rhyoub.com.br</span>
             <span>WhatsApp: (21) 99141-7327</span>
             <span>Instagram: @youbusiness</span>
           </div>
-          <p className="text-muted-foreground/70 text-xs">
+          <p className="text-background/40 text-xs">
             Veja mais sobre a youB na mídia: <span className="font-medium">Brasil Agora</span> | <span className="font-medium">Valor Business</span> | <span className="font-medium">Ego Brasil</span>
           </p>
-          <p className="text-muted-foreground/60 text-xs">© youB 2026</p>
+          <p className="text-background/30 text-xs">© youB 2026</p>
         </div>
       </div>
     </footer>

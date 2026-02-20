@@ -1,37 +1,43 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { GraduationCap, GitBranch, Shield, Monitor, Briefcase, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
-const pains = [
+import solAcademias from "@/assets/sol-academias.jpg";
+import solCarreira from "@/assets/sol-carreira.jpg";
+import solSucessao from "@/assets/sol-sucessao.jpg";
+import solPlataforma from "@/assets/sol-plataforma.jpg";
+import solConsultoria from "@/assets/sol-consultoria.jpg";
+
+const solutions = [
   {
-    icon: GraduationCap,
-    title: "Quero estruturar uma Academia de Liderança",
-    text: "Treinamentos soltos não estão mudando o dia a dia das equipes.",
+    image: solAcademias,
+    tags: ["Liderança", "Desenvolvimento"],
+    title: "Academias Corporativas",
     target: "academias",
   },
   {
-    icon: GitBranch,
-    title: "Preciso organizar Carreira & Cargos",
-    text: "Promoções confusas e falta de perspectiva estão afetando engajamento.",
+    image: solConsultoria,
+    tags: ["Estratégia", "DHO"],
+    title: "Consultoria Estratégica em DHO",
+    target: "consultoria",
+  },
+  {
+    image: solCarreira,
+    tags: ["Carreira", "Cargos"],
+    title: "Arquitetura de Carreira & Cargos",
     target: "carreira",
   },
   {
-    icon: Shield,
-    title: "Quero um plano de Sucessão",
-    text: "Tenho medo de perder pessoas-chave sem substitutos prontos.",
+    image: solSucessao,
+    tags: ["Sucessão", "Continuidade"],
+    title: "Sucessão Estratégica",
     target: "sucessao",
   },
   {
-    icon: Monitor,
-    title: "Quero uma Plataforma / Universidade Corporativa",
-    text: "Preciso centralizar conteúdos, dados e trilhas de desenvolvimento.",
+    image: solPlataforma,
+    tags: ["Tecnologia", "IA"],
+    title: "Plataforma Digital & IA Mentora",
     target: "plataforma",
-  },
-  {
-    icon: Briefcase,
-    title: "Preciso de Consultoria Estratégica em DHO",
-    text: "Falta estrutura, processos e clareza para gestão de pessoas.",
-    target: "consultoria",
   },
 ];
 
@@ -44,40 +50,57 @@ const ChooseYourPain = () => {
   };
 
   return (
-    <section id="escolha-dor" ref={ref} className="section-padding bg-secondary/30">
+    <section id="escolha-dor" ref={ref} className="section-padding">
       <div className="container mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="mb-12"
         >
+          <p className="text-primary text-sm font-semibold uppercase tracking-widest mb-4">
+            Educação
+          </p>
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground mb-4">
-            Com qual cenário você mais se identifica hoje?
+            Conheça nossos portfólios e soluções
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Clique na dor mais próxima da sua realidade e veja como podemos ajudar.
+          <p className="text-muted-foreground max-w-3xl leading-relaxed">
+            Geração de valor no ecossistema de negócios. A youB desenvolve soluções educacionais para os desafios que você e sua empresa se deparam, com metodologia única.
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
-          {pains.map((pain, i) => (
+        {/* Solution cards – FDC grid style */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {solutions.map((sol, i) => (
             <motion.button
-              key={pain.target}
+              key={sol.target}
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: i * 0.08 }}
-              onClick={() => scrollTo(pain.target)}
-              className="glass-card-hover p-6 text-left group cursor-pointer flex flex-col gap-3"
+              onClick={() => scrollTo(sol.target)}
+              className="group text-left rounded-2xl overflow-hidden border border-border bg-card shadow-sm hover:shadow-lg hover:border-primary/30 transition-all duration-500 cursor-pointer"
             >
-              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                <pain.icon className="w-6 h-6 text-primary" />
+              <div className="h-48 overflow-hidden relative">
+                <img
+                  src={sol.image}
+                  alt={sol.title}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
               </div>
-              <h3 className="font-bold text-foreground text-sm leading-snug">{pain.title}</h3>
-              <p className="text-xs text-muted-foreground leading-relaxed flex-1">{pain.text}</p>
-              <span className="inline-flex items-center gap-1 text-xs font-semibold text-primary group-hover:gap-2 transition-all">
-                Ver solução <ArrowRight className="w-3 h-3" />
-              </span>
+              <div className="p-5">
+                <div className="flex flex-wrap gap-2 mb-3">
+                  {sol.tags.map((tag) => (
+                    <span key={tag} className="text-[11px] font-semibold uppercase tracking-wider text-primary bg-primary/8 px-2.5 py-1 rounded-md">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <h3 className="font-bold text-foreground leading-snug group-hover:text-primary transition-colors">
+                  {sol.title}
+                </h3>
+              </div>
             </motion.button>
           ))}
         </div>
