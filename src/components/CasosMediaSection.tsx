@@ -33,21 +33,21 @@ const CasosMediaSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="casos-midia" ref={ref} className="section-padding">
+    <section id="casos-midia" ref={ref} className="section-padding bg-secondary/20">
       <div className="container mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="mb-12"
         >
           <p className="text-primary text-sm font-semibold uppercase tracking-widest mb-4">
-            Credibilidade
+            Portal youB
           </p>
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground mb-4">
             Casos & Mídia
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-muted-foreground max-w-2xl">
             Empresas confiam na youB e nossa atuação é referência em veículos de negócios.
           </p>
         </motion.div>
@@ -70,10 +70,12 @@ const CasosMediaSection = () => {
         {/* Testimonials */}
         <Testimonials />
 
-        {/* Media */}
+        {/* Media articles – blog style like FDC */}
         <div className="mt-16">
-          <h3 className="text-center text-xl font-bold text-foreground mb-8">Na mídia</h3>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
+          <div className="flex items-center justify-between mb-8">
+            <h3 className="text-xl font-bold text-foreground">Na mídia</h3>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {articles.map((article, i) => (
               <motion.a
                 key={article.link}
@@ -83,15 +85,15 @@ const CasosMediaSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.4, delay: 0.3 + i * 0.08 }}
-                className="glass-card-hover p-5 flex flex-col group"
+                className="group rounded-xl border border-border bg-card p-5 hover:shadow-md hover:border-primary/30 transition-all duration-300"
               >
-                <p className="text-xs font-semibold text-primary uppercase tracking-widest mb-2">
+                <p className="text-[11px] font-semibold text-primary uppercase tracking-wider mb-3">
                   {article.source}
                 </p>
-                <h4 className="text-sm font-bold text-foreground leading-snug flex-1 mb-3">
+                <h4 className="text-sm font-bold text-foreground leading-snug flex-1 mb-3 group-hover:text-primary transition-colors">
                   {article.title}
                 </h4>
-                <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary group-hover:underline">
+                <span className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground group-hover:text-primary transition-colors">
                   Ler matéria <ExternalLink className="w-3 h-3" />
                 </span>
               </motion.a>
