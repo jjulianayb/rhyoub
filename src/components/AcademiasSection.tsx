@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { ArrowRight, GraduationCap, CheckCircle2, AlertTriangle, ShieldCheck, Calculator } from "lucide-react";
 import ScenarioSimulator from "./ScenarioSimulator";
+import MediaBlock from "./MediaBlock";
 
 const WHATSAPP_TRAIL = "https://wa.me/5521991417327?text=Olá,%20montei%20uma%20trilha%20no%20site%20da%20youB%20e%20quero%20conversar%20sobre%20uma%20Academia%20Corporativa.";
 const WHATSAPP_DIAG = "https://wa.me/5521991417327?text=Olá,%20gostaria%20de%20aprofundar%20o%20diagnóstico%20de%20liderança%20e%20sucessão%20para%20a%20minha%20empresa.";
@@ -337,6 +338,17 @@ const AcademiasSection = () => {
           <TrailBuilder />
           <RiskCalculator />
           <ScenarioSimulator solutionName="Academias Corporativas & Programas de Liderança" />
+          <MediaBlock
+            title="Academias em destaque na mídia"
+            text="Quer entender por que grandes empresas estão trocando treinamentos genéricos por academias autorais? Veja a reportagem especial sobre o modelo de Academias da youB."
+            links={[
+              {
+                label: "Ler matéria no Brasil Agora",
+                url: "https://brasilagoraonline.com.br/noticias/2025/05/a-nova-era-da-lideranca-por-que-grandes-empresas-estao-substituindo-treinamentos-genericos-por-academias-autorais-como-as-da-youb/",
+                isButton: true,
+              },
+            ]}
+          />
         </motion.div>
       </div>
     </section>
