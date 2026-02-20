@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Menu, X } from "lucide-react";
 
@@ -17,6 +17,28 @@ const navLinks = [
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        if (visible.length > 0) {
+          setActiveSection(visible[0].target.id);
+        }
+      },
+      { rootMargin: "-80px 0px -60% 0px", threshold: 0 }
+    );
+
+    navLinks.forEach((link) => {
+      const el = document.getElementById(link.target);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   const scrollTo = (id: string) => {
     setOpen(false);
@@ -37,15 +59,25 @@ const Navbar = () => {
           you<span className="text-primary">B</span><span className="text-primary">.</span>
         </a>
 
-        {/* Desktop links */}
         <div className="hidden lg:flex items-center gap-6">
           {navLinks.map((link) => (
             <button
               key={link.target}
               onClick={() => scrollTo(link.target)}
-              className="text-sm text-muted-foreground hover:text-primary transition-colors font-medium"
+              className={`text-sm font-medium transition-colors relative ${
+                activeSection === link.target
+                  ? "text-primary"
+                  : "text-muted-foreground hover:text-primary"
+              }`}
             >
               {link.label}
+              {activeSection === link.target && (
+                <motion.span
+                  layoutId="nav-underline"
+                  className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary rounded-full"
+                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                />
+              )}
             </button>
           ))}
         </div>
@@ -61,7 +93,6 @@ const Navbar = () => {
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
           </a>
 
-          {/* Hamburger */}
           <button
             onClick={() => setOpen(!open)}
             className="lg:hidden p-2 rounded-lg hover:bg-secondary transition-colors"
@@ -72,7 +103,6 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile menu */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -87,7 +117,11 @@ const Navbar = () => {
                 <button
                   key={link.target}
                   onClick={() => scrollTo(link.target)}
-                  className="text-left py-3 px-3 rounded-lg text-sm font-medium text-muted-foreground hover:text-primary hover:bg-secondary/50 transition-colors"
+                  className={`text-left py-3 px-3 rounded-lg text-sm font-medium transition-colors ${
+                    activeSection === link.target
+                      ? "text-primary bg-primary/5"
+                      : "text-muted-foreground hover:text-primary hover:bg-secondary/50"
+                  }`}
                 >
                   {link.label}
                 </button>
