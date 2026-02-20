@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import InvisibleBlocks from "@/components/InvisibleBlocks";
 import CostOfInaction from "@/components/CostOfInaction";
+import OurResponse from "@/components/OurResponse";
 import EcosystemNav from "@/components/EcosystemNav";
 import TrustSection from "@/components/TrustSection";
 import WhoWeAre from "@/components/WhoWeAre";
@@ -18,6 +19,7 @@ const Index = () => {
       <Hero />
       <InvisibleBlocks />
       <CostOfInaction />
+      <OurResponse />
       <EcosystemNav />
       <TrustSection />
       <WhoWeAre />
