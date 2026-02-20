@@ -6,7 +6,7 @@ const WHATSAPP_LINK = "https://wa.me/5521991417327?text=Olá,%20vim%20pelo%20sit
 
 const navLinks = [
   { label: "Início", target: "top" },
-  { label: "Soluções", target: "solucoes" },
+  { label: "Soluções", target: "escolha-dor" },
   { label: "Casos & Mídia", target: "casos-midia" },
   { label: "Contato", target: "contato" },
 ];
