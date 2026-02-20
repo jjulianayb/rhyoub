@@ -1,19 +1,17 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
+import { solutions } from "@/data/solutions";
 
 const WHATSAPP_LINK = "https://wa.me/5521991417327?text=Olá,%20vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20sessão%20estratégica.";
-
-const navLinks = [
-  { label: "Institucional", target: "quem-somos" },
-  { label: "Soluções", target: "escolha-dor" },
-  { label: "Casos & Mídia", target: "casos-midia" },
-  { label: "Contato", target: "contato" },
-];
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const location = useLocation();
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 20);
@@ -21,13 +19,22 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handler);
   }, []);
 
-  const scrollTo = (id: string) => {
+  useEffect(() => {
     setOpen(false);
-    setTimeout(() => {
-      if (id === "top") window.scrollTo({ top: 0, behavior: "smooth" });
-      else document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 100);
-  };
+    setDropdownOpen(false);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const isActive = (path: string) => location.pathname === path;
 
   return (
     <motion.nav
@@ -52,22 +59,83 @@ const Navbar = () => {
 
       {/* Main navbar */}
       <div className="container mx-auto flex items-center justify-between h-16 px-6">
-        <button onClick={() => scrollTo("top")} className="flex items-center gap-1">
+        <Link to="/" className="flex items-center gap-1">
           <span className="text-2xl font-bold tracking-tight text-foreground">
             you<span className="text-primary">B</span><span className="text-primary">.</span>
           </span>
-        </button>
+        </Link>
 
+        {/* Desktop links */}
         <div className="hidden md:flex items-center gap-1">
-          {navLinks.map((link) => (
+          <Link
+            to="/"
+            className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${
+              isActive("/") ? "text-primary bg-primary/5" : "text-muted-foreground hover:text-primary hover:bg-primary/5"
+            }`}
+          >
+            Início
+          </Link>
+
+          {/* Soluções dropdown */}
+          <div ref={dropdownRef} className="relative">
             <button
-              key={link.target}
-              onClick={() => scrollTo(link.target)}
-              className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors rounded-lg hover:bg-primary/5"
+              onClick={() => setDropdownOpen(!dropdownOpen)}
+              className={`inline-flex items-center gap-1 px-4 py-2 text-sm font-medium rounded-lg transition-colors ${
+                location.pathname.match(/^\/(academias|consultoria|carreira|sucessao|plataforma)/)
+                  ? "text-primary bg-primary/5"
+                  : "text-muted-foreground hover:text-primary hover:bg-primary/5"
+              }`}
             >
-              {link.label}
+              Soluções
+              <ChevronDown className={`w-4 h-4 transition-transform ${dropdownOpen ? "rotate-180" : ""}`} />
             </button>
-          ))}
+            <AnimatePresence>
+              {dropdownOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 8 }}
+                  transition={{ duration: 0.15 }}
+                  className="absolute top-full left-0 mt-1 w-72 bg-card border border-border rounded-xl shadow-xl overflow-hidden z-50"
+                >
+                  {solutions.map((sol) => (
+                    <Link
+                      key={sol.slug}
+                      to={`/${sol.slug}`}
+                      className={`flex items-start gap-3 px-4 py-3 text-sm transition-colors hover:bg-primary/5 ${
+                        isActive(`/${sol.slug}`) ? "bg-primary/5 text-primary" : "text-foreground"
+                      }`}
+                    >
+                      <div className="w-10 h-10 rounded-lg overflow-hidden shrink-0 mt-0.5">
+                        <img src={sol.image} alt={sol.title} className="w-full h-full object-cover" />
+                      </div>
+                      <div>
+                        <p className="font-medium leading-tight">{sol.title.split(" & ")[0]}</p>
+                        <p className="text-xs text-muted-foreground mt-0.5">{sol.tags.join(" · ")}</p>
+                      </div>
+                    </Link>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
+          <Link
+            to="/sobre"
+            className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${
+              isActive("/sobre") ? "text-primary bg-primary/5" : "text-muted-foreground hover:text-primary hover:bg-primary/5"
+            }`}
+          >
+            Sobre
+          </Link>
+          <Link
+            to="/contato"
+            className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${
+              isActive("/contato") ? "text-primary bg-primary/5" : "text-muted-foreground hover:text-primary hover:bg-primary/5"
+            }`}
+          >
+            Contato
+          </Link>
         </div>
 
         <div className="flex items-center gap-3">
@@ -77,7 +145,7 @@ const Navbar = () => {
             rel="noopener noreferrer"
             className="hidden sm:inline-flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2 rounded-lg text-sm font-semibold transition-all duration-300 hover:bg-primary/90 hover:shadow-md hover:shadow-primary/20"
           >
-            Fale Conosco
+            Agendar Conversa
           </a>
           <button onClick={() => setOpen(!open)} className="md:hidden p-2 rounded-lg hover:bg-secondary transition-colors" aria-label="Menu">
             {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -85,6 +153,7 @@ const Navbar = () => {
         </div>
       </div>
 
+      {/* Mobile menu */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -95,17 +164,27 @@ const Navbar = () => {
             className="md:hidden border-t border-border/50 bg-background/98 backdrop-blur-xl overflow-hidden"
           >
             <div className="container mx-auto px-6 py-4 flex flex-col gap-1">
-              {navLinks.map((link) => (
-                <button
-                  key={link.target}
-                  onClick={() => scrollTo(link.target)}
-                  className="text-left py-3 px-3 rounded-lg text-sm font-medium text-muted-foreground hover:text-primary hover:bg-secondary/50"
+              <Link to="/" className="text-left py-3 px-3 rounded-lg text-sm font-medium text-muted-foreground hover:text-primary hover:bg-secondary/50">
+                Início
+              </Link>
+              <p className="text-xs font-semibold text-primary uppercase tracking-wider px-3 pt-3 pb-1">Soluções</p>
+              {solutions.map((sol) => (
+                <Link
+                  key={sol.slug}
+                  to={`/${sol.slug}`}
+                  className="text-left py-2.5 px-5 rounded-lg text-sm text-muted-foreground hover:text-primary hover:bg-secondary/50"
                 >
-                  {link.label}
-                </button>
+                  {sol.title.split(" & ")[0]}
+                </Link>
               ))}
+              <Link to="/sobre" className="text-left py-3 px-3 rounded-lg text-sm font-medium text-muted-foreground hover:text-primary hover:bg-secondary/50">
+                Sobre
+              </Link>
+              <Link to="/contato" className="text-left py-3 px-3 rounded-lg text-sm font-medium text-muted-foreground hover:text-primary hover:bg-secondary/50">
+                Contato
+              </Link>
               <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="sm:hidden mt-2 flex items-center justify-center gap-2 bg-primary text-primary-foreground px-5 py-3 rounded-lg text-sm font-semibold">
-                Fale Conosco
+                Agendar Conversa
               </a>
             </div>
           </motion.div>
