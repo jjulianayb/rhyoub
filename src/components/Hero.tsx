@@ -1,35 +1,35 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, ArrowDown } from "lucide-react";
 import heroCorporate from "@/assets/hero-corporate.jpg";
 
 const WHATSAPP_LINK = "https://wa.me/5521991417327?text=Olá,%20vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20sessão%20estratégica.";
 
 const Hero = () => {
+  const scrollToSolutions = () => {
+    document.getElementById("escolha-dor")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
   return (
-    <section className="relative min-h-[85vh] flex items-center section-padding pt-32 overflow-hidden">
+    <section id="top" className="relative min-h-[85vh] flex items-center section-padding pt-32 overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,hsl(262_83%_58%/0.06)_0%,transparent_60%)]" />
-      <div className="absolute top-1/4 -left-32 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
 
       <div className="container mx-auto relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Text */}
           <div>
-            <motion.div
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/20 bg-primary/5 text-primary text-sm font-medium mb-8"
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-primary text-sm font-semibold uppercase tracking-widest mb-6"
             >
-              <Sparkles className="w-4 h-4" />
-              Ecossistema de Educação Corporativa & DHO
-            </motion.div>
+              Ecossistema de DHO, Tecnologia & IA
+            </motion.p>
 
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.3 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] mb-8 text-balance text-foreground"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] mb-6 text-balance text-foreground"
             >
               Escalando performance.{" "}
               <span className="glow-text">Transformando culturas.</span>{" "}
@@ -42,27 +42,34 @@ const Hero = () => {
               transition={{ duration: 0.7, delay: 0.5 }}
               className="text-lg md:text-xl text-muted-foreground max-w-xl mb-10 leading-relaxed"
             >
-              Conheça a metodologia exclusiva youB que integra tecnologia e humanização para blindar o futuro da sua empresa.
+              Para empresas que não aceitam lideranças e culturas medianas. Metodologia exclusiva que integra tecnologia e humanização.
             </motion.p>
 
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.7 }}
+              className="flex flex-wrap gap-4"
             >
+              <button
+                onClick={scrollToSolutions}
+                className="group inline-flex items-center gap-3 bg-primary text-primary-foreground px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-primary/25"
+              >
+                Simular meu cenário
+                <ArrowDown className="w-5 h-5 transition-transform group-hover:translate-y-1" />
+              </button>
               <a
                 href={WHATSAPP_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center gap-3 bg-primary text-primary-foreground px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-primary/25"
+                className="group inline-flex items-center gap-3 border-2 border-primary text-primary px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-300 hover:bg-primary hover:text-primary-foreground"
               >
-                Agendar Sessão Estratégica
+                Agendar conversa estratégica
                 <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
               </a>
             </motion.div>
           </div>
 
-          {/* Image */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
