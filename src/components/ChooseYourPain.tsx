@@ -48,7 +48,7 @@ const ChooseYourPain = () => {
         >
           <p className="text-primary text-sm font-semibold uppercase tracking-widest mb-4">Educação</p>
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground mb-4">
-            Conheça nossos portfólios e soluções
+            Conheça nossas soluções
           </h2>
           <p className="text-muted-foreground max-w-3xl leading-relaxed">
             Geração de valor no ecossistema de negócios. A youB desenvolve soluções educacionais para os desafios que você e sua empresa se deparam, com metodologia única.
