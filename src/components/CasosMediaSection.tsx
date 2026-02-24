@@ -1,7 +1,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { ExternalLink } from "lucide-react";
-import Testimonials from "./Testimonials";
+
 
 import logoIg from "@/assets/logos/ig-egobrazil.png";
 import logoBrasilAgora from "@/assets/logos/brasil-agora.png";
@@ -181,8 +181,6 @@ const CasosMediaSection = () => {
           </div>
         </div>
 
-        {/* Testimonials */}
-        <Testimonials />
       </div>
     </section>
   );
