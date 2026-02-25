@@ -103,7 +103,7 @@ export default {
         "fade-in": "fade-in 0.5s ease-out forwards",
         "pulse-glow": "pulse-glow 3s ease-in-out infinite",
         "counter": "counter 0.8s ease-out forwards",
-        "marquee": "marquee 8s linear infinite",
+        "marquee": "marquee 5s linear infinite",
       },
     },
   },
