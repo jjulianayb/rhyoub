@@ -8,6 +8,8 @@ import Index from "./pages/Index";
 import SolutionPage from "./pages/SolutionPage";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import ProgramaLideres from "./pages/ProgramaLideres";
+import JornadasCultura from "./pages/JornadasCultura";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -23,6 +25,8 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/sobre" element={<About />} />
             <Route path="/contato" element={<Contact />} />
+            <Route path="/programa-lideres" element={<ProgramaLideres />} />
+            <Route path="/jornadas-cultura" element={<JornadasCultura />} />
             <Route path="/:slug" element={<SolutionPage />} />
           </Route>
           <Route path="*" element={<NotFound />} />

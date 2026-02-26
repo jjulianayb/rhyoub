@@ -1,150 +1,104 @@
 import { motion, useInView } from "framer-motion";
-import { useRef, useCallback, useEffect, useState } from "react";
-import useEmblaCarousel from "embla-carousel-react";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { useRef } from "react";
+import { ArrowRight, Users, Heart, Headphones } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { solutions } from "@/data/solutions";
+
+const cards = [
+  {
+    icon: Users,
+    title: "Programa de Desenvolvimento de Líderes",
+    subtitle: "Formação viva, prática e contínua para lideranças que cuidam de pessoas e de resultados.",
+    bullets: [
+      "Aprofundamento em temas essenciais de liderança humana.",
+      "Espaços seguros de troca, prática e reflexão.",
+      "Acompanhamento para que o aprendizado vire comportamento.",
+    ],
+    cta: "Ver mais sobre o programa",
+    href: "/programa-lideres",
+  },
+  {
+    icon: Heart,
+    title: "Jornadas de Cultura, Pertencimento e Times",
+    subtitle: "Experiências que fortalecem confiança, conexão e responsabilidade coletiva.",
+    bullets: [
+      "Conversas profundas sobre o jeito de ser e fazer da empresa.",
+      "Encontros que aproximam áreas, pessoas e lideranças.",
+      "Construção de acordos e práticas que sustentam a cultura no dia a dia.",
+    ],
+    cta: "Ver mais sobre as jornadas",
+    href: "/jornadas-cultura",
+  },
+  {
+    icon: Headphones,
+    title: "Acompanhamento, suporte e conteúdos youB",
+    subtitle: "Apoio contínuo para quem cuida de gente: RH, lideranças e times.",
+    bullets: [
+      "Espaço de escuta e suporte para quem está à frente da mudança.",
+      "Conteúdos autorais, provocações e ferramentas práticas.",
+      "Parceria de longo prazo para sustentar desenvolvimento humano.",
+    ],
+    cta: "Ver como esse suporte funciona",
+    href: "/contato",
+  },
+];
 
 const ChooseYourPain = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
   const navigate = useNavigate();
 
-  const [emblaRef, emblaApi] = useEmblaCarousel({
-    align: "start",
-    loop: true,
-    slidesToScroll: 1,
-    dragFree: true,
-  });
-
-  const [canScrollPrev, setCanScrollPrev] = useState(false);
-  const [canScrollNext, setCanScrollNext] = useState(false);
-  const [selectedSnap, setSelectedSnap] = useState(0);
-  const [snapCount, setSnapCount] = useState(0);
-
-  const onSelect = useCallback(() => {
-    if (!emblaApi) return;
-    setCanScrollPrev(emblaApi.canScrollPrev());
-    setCanScrollNext(emblaApi.canScrollNext());
-    setSelectedSnap(emblaApi.selectedScrollSnap());
-    setSnapCount(emblaApi.scrollSnapList().length);
-  }, [emblaApi]);
-
-  useEffect(() => {
-    if (!emblaApi) return;
-    onSelect();
-    emblaApi.on("select", onSelect);
-    emblaApi.on("reInit", onSelect);
-    return () => {
-      emblaApi.off("select", onSelect);
-    };
-  }, [emblaApi, onSelect]);
-
   return (
-    <section id="escolha-dor" ref={ref} className="section-padding">
-      <div className="container mx-auto">
+    <section id="ecossistema" ref={ref} className="section-padding bg-secondary/30">
+      <div className="container mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="mb-12"
+          className="mb-12 max-w-3xl"
         >
-          <p className="text-primary text-sm font-semibold uppercase tracking-widest mb-4">Educação</p>
+          <p className="text-primary text-sm font-semibold uppercase tracking-widest mb-4">Ecossistema</p>
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground mb-4">
-            Conheça nossas soluções
+            O ecossistema youB de Desenvolvimento Humano & Organizacional.
           </h2>
-          <p className="text-muted-foreground max-w-3xl leading-relaxed">
-            Geração de valor no ecossistema de negócios. A youB desenvolve soluções educacionais para os desafios que você e sua empresa se deparam, com metodologia única.
+          <p className="text-lg text-muted-foreground leading-relaxed mb-4">
+            Mais do que ações pontuais, criamos uma jornada contínua que integra desenvolvimento de líderes, cultura e times.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            A youB atua como um ecossistema: você pode entrar por diferentes portas – programas de liderança, jornadas de cultura, experiências para times, conteúdos e suporte – e, a partir daí, construímos juntos o caminho que faz sentido para o momento da sua empresa.
           </p>
         </motion.div>
 
-        <div className="relative">
-          {/* Navigation arrows */}
-          <button
-            onClick={() => emblaApi?.scrollPrev()}
-            disabled={!canScrollPrev}
-            className="absolute -left-4 md:-left-6 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center shadow-lg disabled:opacity-30 disabled:cursor-not-allowed hover:bg-primary/90 transition-all"
-            aria-label="Anterior"
-          >
-            <ArrowLeft className="w-5 h-5" />
-          </button>
-          <button
-            onClick={() => emblaApi?.scrollNext()}
-            disabled={!canScrollNext}
-            className="absolute -right-4 md:-right-6 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center shadow-lg disabled:opacity-30 disabled:cursor-not-allowed hover:bg-primary/90 transition-all"
-            aria-label="Próximo"
-          >
-            <ArrowRight className="w-5 h-5" />
-          </button>
-
-          {/* Carousel viewport */}
-          <div className="overflow-hidden" ref={emblaRef}>
-            <div className="flex gap-5">
-              {solutions.map((sol, i) => (
-                <div
-                  key={sol.slug}
-                  className="flex-[0_0_85%] sm:flex-[0_0_46%] lg:flex-[0_0_31%] min-w-0"
-                >
-                  <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.5, delay: i * 0.08 }}
-                    onClick={() => navigate(`/${sol.slug}`)}
-                    role="button"
-                    tabIndex={0}
-                    className="group relative rounded-3xl overflow-hidden w-full cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_40px_-8px_hsl(var(--primary)/0.3)] shadow-lg"
-                    style={{ height: 480 }}
-                  >
-                    {/* Full image background */}
-                    <img
-                      src={sol.image}
-                      alt={sol.title}
-                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                      loading="lazy"
-                    />
-
-                    {/* Purple gradient overlay */}
-                    <div className="absolute inset-x-0 bottom-0 h-[60%] bg-gradient-to-t from-[hsl(var(--primary))] via-[hsl(var(--primary)/0.5)] to-transparent" />
-
-                    {/* Tags at top */}
-                    <div className="absolute top-4 left-4 flex flex-wrap gap-2 z-10">
-                      {sol.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="text-[11px] font-semibold uppercase tracking-wider text-primary-foreground bg-primary/80 backdrop-blur-sm px-3 py-1.5 rounded-full"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-
-                    {/* Title at bottom */}
-                    <div className="absolute bottom-0 left-0 right-0 p-6 z-10">
-                      <h3 className="text-xl font-bold text-white leading-snug drop-shadow-lg">
-                        {sol.title}
-                      </h3>
-                    </div>
-                  </motion.div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Dot indicators */}
-          <div className="flex justify-center gap-2 mt-8">
-            {Array.from({ length: snapCount }).map((_, i) => (
+        <div className="grid md:grid-cols-3 gap-6">
+          {cards.map((card, i) => (
+            <motion.div
+              key={card.title}
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              className="glass-card-hover p-7 flex flex-col"
+            >
+              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5">
+                <card.icon className="w-6 h-6 text-primary" />
+              </div>
+              <h3 className="text-lg font-bold text-foreground mb-2">{card.title}</h3>
+              <p className="text-sm text-muted-foreground mb-5 leading-relaxed">{card.subtitle}</p>
+              <ul className="space-y-3 flex-1 mb-6">
+                {card.bullets.map((b, j) => (
+                  <li key={j} className="flex items-start gap-2.5 text-sm text-muted-foreground">
+                    <div className="w-1.5 h-1.5 rounded-full bg-primary shrink-0 mt-1.5" />
+                    {b}
+                  </li>
+                ))}
+              </ul>
               <button
-                key={i}
-                onClick={() => emblaApi?.scrollTo(i)}
-                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                  i === selectedSnap
-                    ? "bg-primary scale-125"
-                    : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
-                }`}
-                aria-label={`Ir para slide ${i + 1}`}
-              />
-            ))}
-          </div>
+                onClick={() => navigate(card.href)}
+                className="group inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-primary/80 transition-colors"
+              >
+                {card.cta}
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </button>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
