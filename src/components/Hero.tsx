@@ -11,10 +11,11 @@ const WHATSAPP_LINK = "https://wa.me/5521991417327?text=Olá,%20vim%20pelo%20sit
 const slides = [
   {
     image: heroFdc,
-    subtitle: "Ecossistema de DHO, Tecnologia & IA",
-    title: "Escalando performance.\nTransformando culturas.",
-    description: "Para empresas que não aceitam lideranças e culturas medianas.",
-    cta: { label: "Simular meu cenário", action: "scroll:escolha-dor" },
+    subtitle: "Ecossistema completo de DHO",
+    title: "Transformamos cultura, líderes\ne times com um ecossistema\ncompleto de DHO.",
+    description: "A youB conecta desenvolvimento humano, cultura e liderança em experiências contínuas, profundas e práticas.",
+    supportText: "Uma conversa sem compromisso, para entender o momento da sua empresa e desenhar juntos o melhor caminho dentro do ecossistema youB.",
+    cta: { label: "Agendar uma conversa", action: "scroll:fale-conosco" },
     ctaSecondary: { label: "Agendar conversa estratégica", href: WHATSAPP_LINK },
   },
   {
@@ -76,7 +77,11 @@ const Hero = () => {
             <motion.div key={current} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.6 }}>
               <p className="text-white/70 text-sm font-semibold uppercase tracking-widest mb-4">{slides[current].subtitle}</p>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.1] mb-6 whitespace-pre-line">{slides[current].title}</h1>
-              <p className="text-lg md:text-xl text-white/80 mb-8 max-w-lg">{slides[current].description}</p>
+              <p className="text-lg md:text-xl text-white/80 mb-4 max-w-lg">{slides[current].description}</p>
+              {(slides[current] as any).supportText && (
+                <p className="text-sm text-white/50 mb-8 max-w-lg leading-relaxed">{(slides[current] as any).supportText}</p>
+              )}
+              {!(slides[current] as any).supportText && <div className="mb-4" />}
               <div className="flex flex-wrap gap-4">
                 <button
                   onClick={() => handleCta(slides[current].cta.action)}

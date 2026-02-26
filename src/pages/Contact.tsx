@@ -17,10 +17,13 @@ const Contact = () => {
           </nav>
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <h1 className="text-3xl md:text-5xl font-bold text-white leading-tight mb-4">
-              Fale com a <span className="text-primary">youB</span>
+              Fale com a <span className="text-primary">youB</span>.
             </h1>
-            <p className="text-lg text-white/70 max-w-xl">
-              Agende uma sessão estratégica sem compromisso. Entendemos o seu cenário antes de propor qualquer solução.
+            <p className="text-lg text-white/70 max-w-2xl leading-relaxed">
+              Se algum dos caminhos da youB fez sentido para você – ou se você ainda não sabe por onde começar, mas sente que é hora de olhar para suas pessoas, cultura e lideranças – escreva pra gente.
+            </p>
+            <p className="text-white/50 max-w-2xl mt-4 leading-relaxed">
+              Vamos escutar sua história, seu contexto e, a partir daí, desenhar juntos os próximos passos.
             </p>
           </motion.div>
         </div>
@@ -62,26 +65,18 @@ const Contact = () => {
             <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}>
               <div className="glass-card p-8 md:p-10 h-full flex flex-col justify-center">
                 <h2 className="text-2xl font-bold text-foreground mb-4">
-                  Sessão estratégica <span className="text-primary">gratuita</span>
+                  Enviar <span className="text-primary">mensagem</span>
                 </h2>
                 <p className="text-muted-foreground leading-relaxed mb-6">
-                  Em 30 minutos, um consultor youB entende seu cenário, identifica as travas invisíveis e sugere o melhor caminho — sem compromisso comercial.
+                  Conte um pouco sobre o momento da sua empresa. Vamos escutar e desenhar juntos os próximos passos.
                 </p>
-                <ul className="space-y-3 mb-8">
-                  {["Entendemos sua dor e contexto", "Identificamos oportunidades rápidas", "Sugerimos o formato ideal de projeto"].map((item) => (
-                    <li key={item} className="flex items-center gap-3 text-sm text-muted-foreground">
-                      <div className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
                 <a
                   href={WHATSAPP_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground px-7 py-4 rounded-xl font-semibold transition-all hover:shadow-lg hover:shadow-primary/20"
                 >
-                  Agendar agora via WhatsApp
+                  Enviar mensagem
                   <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                 </a>
               </div>

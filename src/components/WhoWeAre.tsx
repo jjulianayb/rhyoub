@@ -1,100 +1,54 @@
 import { motion, useInView } from "framer-motion";
-import { useRef, useEffect, useState } from "react";
-import campusImage from "@/assets/campus-youb.jpg";
+import { useRef } from "react";
+import { AlertCircle } from "lucide-react";
 
-const useCountUp = (end: number, duration = 2000, inView = false) => {
-  const [count, setCount] = useState(0);
-  const hasRun = useRef(false);
-  useEffect(() => {
-    if (!inView || hasRun.current) return;
-    hasRun.current = true;
-    const startTime = performance.now();
-    const tick = (now: number) => {
-      const progress = Math.min((now - startTime) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      setCount(Math.round(end * eased));
-      if (progress < 1) requestAnimationFrame(tick);
-    };
-    requestAnimationFrame(tick);
-  }, [end, duration, inView]);
-  return count;
-};
-
-const StatRow = ({ inView }: { inView: boolean }) => {
-  const pros = useCountUp(11000, 2000, inView);
-  const years = useCountUp(8, 1500, inView);
-  const companies = useCountUp(50, 1800, inView);
-  return (
-    <div className="mt-8 flex items-center gap-8">
-      <div>
-        <p className="text-3xl font-bold text-primary">{pros.toLocaleString("pt-BR")}+</p>
-        <p className="text-xs text-muted-foreground mt-1">profissionais impactados</p>
-      </div>
-      <div className="w-px h-10 bg-border" />
-      <div>
-        <p className="text-3xl font-bold text-primary">{years}+</p>
-        <p className="text-xs text-muted-foreground mt-1">anos de atuação</p>
-      </div>
-      <div className="w-px h-10 bg-border" />
-      <div>
-        <p className="text-3xl font-bold text-primary">{companies}+</p>
-        <p className="text-xs text-muted-foreground mt-1">empresas atendidas</p>
-      </div>
-    </div>
-  );
-};
+const painBullets = [
+  "Você investe em treinamentos, mas não vê mudança consistente no dia a dia?",
+  "Seus líderes foram promovidos, mas não se sentem preparados para cuidar de pessoas?",
+  "O clima está pesado, com conflitos velados e pouca confiança entre as áreas?",
+  "As pessoas estão cansadas, desconectadas da cultura e questionando o sentido do trabalho?",
+];
 
 const WhoWeAre = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="quem-somos" ref={ref} className="section-padding">
-      <div className="container mx-auto">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center max-w-6xl mx-auto">
-          {/* Text */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7 }}
-          >
-            <p className="text-primary text-sm font-semibold uppercase tracking-widest mb-4">
-              História
-            </p>
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground mb-6">
-              Conheça a <span className="text-primary">youB</span>
-            </h2>
-            <div className="space-y-4 text-muted-foreground leading-relaxed">
-              <p>
-                A youB é um ecossistema completo de Desenvolvimento Humano e Organizacional, que integra tecnologia, dados estratégicos e metodologias de mercado com práticas humanizadas.
-              </p>
-              <p>
-                Desde 2016, construímos um histórico de impacto em diferentes segmentos e players nacionais, sempre respeitando a cultura e a singularidade de cada negócio.
-              </p>
-              <p>
-                Atuamos de forma integrada em três frentes — <strong className="text-foreground">Educação Executiva</strong>, <strong className="text-foreground">Consultoria Estratégica</strong> e <strong className="text-foreground">Tecnologia & IA</strong> — para ampliar o impacto e promover o desenvolvimento de pessoas, organizações e resultados.
-              </p>
-            </div>
-            <StatRow inView={isInView} />
-          </motion.div>
+    <section id="para-quem-e" ref={ref} className="section-padding">
+      <div className="container mx-auto max-w-5xl">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7 }}
+        >
+          <p className="text-primary text-sm font-semibold uppercase tracking-widest mb-4">
+            Para quem é
+          </p>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground mb-4">
+            Para empresas que sabem que pessoas não são "recursos".
+          </h2>
+          <p className="text-lg text-muted-foreground mb-6 max-w-3xl leading-relaxed">
+            A youB é para negócios que entenderam que resultado sustentável passa por cultura, relações saudáveis e liderança preparada.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-10 max-w-3xl">
+            Apoiamos empresas que estão em crescimento, em transição ou em reconstrução de cultura. Caminhamos junto com times de Gente & Gestão, diretores, fundadores e lideranças que querem sair do discurso e levar o cuidado com pessoas para a prática – todos os dias.
+          </p>
 
-          {/* Image */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.2 }}
-          >
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-              <img
-                src={campusImage}
-                alt="Campus youB"
-                className="w-full aspect-[4/3] object-cover"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/10 to-transparent" />
-            </div>
-          </motion.div>
-        </div>
+          <div className="grid sm:grid-cols-2 gap-4">
+            {painBullets.map((bullet, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.4, delay: 0.2 + i * 0.1 }}
+                className="glass-card p-5 flex items-start gap-4"
+              >
+                <AlertCircle className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                <p className="text-sm text-muted-foreground leading-relaxed">{bullet}</p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
   );
