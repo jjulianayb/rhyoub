@@ -55,7 +55,7 @@ const Hero = () => {
   const next = () => setCurrent((c) => (c + 1) % slides.length);
 
   return (
-    <section id="top" className="relative h-[85vh] min-h-[600px] overflow-hidden">
+    <section id="top" className="relative h-[100svh] md:h-[85vh] min-h-[500px] md:min-h-[600px] overflow-hidden">
       <AnimatePresence mode="wait">
         <motion.div
           key={current}
@@ -71,21 +71,21 @@ const Hero = () => {
         </motion.div>
       </AnimatePresence>
 
-      <div className="relative z-10 h-full container mx-auto px-6 flex items-center">
+      <div className="relative z-10 h-full container mx-auto px-5 md:px-6 flex items-end md:items-center pb-24 md:pb-0">
         <div className="max-w-2xl">
           <AnimatePresence mode="wait">
             <motion.div key={current} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.6 }}>
-              <p className="text-white/70 text-sm font-semibold uppercase tracking-widest mb-4">{slides[current].subtitle}</p>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.1] mb-6 whitespace-pre-line">{slides[current].title}</h1>
-              <p className="text-lg md:text-xl text-white/80 mb-4 max-w-lg">{slides[current].description}</p>
+              <p className="text-white/70 text-xs md:text-sm font-semibold uppercase tracking-widest mb-3 md:mb-4">{slides[current].subtitle}</p>
+              <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.15] mb-4 md:mb-6 whitespace-pre-line">{slides[current].title}</h1>
+              <p className="text-sm md:text-xl text-white/80 mb-4 max-w-lg">{slides[current].description}</p>
               {(slides[current] as any).supportText && (
-                <p className="text-sm text-white/50 mb-8 max-w-lg leading-relaxed">{(slides[current] as any).supportText}</p>
+                <p className="hidden md:block text-sm text-white/50 mb-8 max-w-lg leading-relaxed">{(slides[current] as any).supportText}</p>
               )}
               {!(slides[current] as any).supportText && <div className="mb-4" />}
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
                 <button
                   onClick={() => handleCta(slides[current].cta.action)}
-                  className="inline-flex items-center gap-2 bg-white text-foreground px-7 py-3.5 rounded-lg text-sm font-semibold transition-all hover:bg-white/90 hover:shadow-lg"
+                  className="inline-flex items-center justify-center gap-2 bg-white text-foreground px-6 md:px-7 py-3 md:py-3.5 rounded-lg text-sm font-semibold transition-all hover:bg-white/90 hover:shadow-lg"
                 >
                   {slides[current].cta.label}
                 </button>
@@ -94,7 +94,7 @@ const Hero = () => {
                     href={slides[current].ctaSecondary!.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 border-2 border-white/60 text-white px-7 py-3.5 rounded-lg text-sm font-semibold transition-all hover:bg-white/10 hover:border-white"
+                    className="inline-flex items-center justify-center gap-2 border-2 border-white/60 text-white px-6 md:px-7 py-3 md:py-3.5 rounded-lg text-sm font-semibold transition-all hover:bg-white/10 hover:border-white"
                   >
                     {slides[current].ctaSecondary!.label}
                     <ArrowRight className="w-4 h-4" />
@@ -106,17 +106,17 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className="absolute bottom-8 right-8 z-20 flex items-center gap-3">
-        <button onClick={prev} className="w-10 h-10 rounded-full border border-white/40 flex items-center justify-center text-white hover:bg-white/10 transition-colors">
-          <ChevronLeft className="w-5 h-5" />
+      <div className="absolute bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:right-8 z-20 flex items-center gap-2 md:gap-3">
+        <button onClick={prev} className="w-8 h-8 md:w-10 md:h-10 rounded-full border border-white/40 flex items-center justify-center text-white hover:bg-white/10 transition-colors">
+          <ChevronLeft className="w-4 h-4 md:w-5 md:h-5" />
         </button>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5 md:gap-2">
           {slides.map((_, i) => (
-            <button key={i} onClick={() => setCurrent(i)} className={`transition-all duration-300 rounded-full ${i === current ? "w-8 h-3 bg-white" : "w-3 h-3 bg-white/40 hover:bg-white/60"}`} />
+            <button key={i} onClick={() => setCurrent(i)} className={`transition-all duration-300 rounded-full ${i === current ? "w-6 md:w-8 h-2.5 md:h-3 bg-white" : "w-2.5 md:w-3 h-2.5 md:h-3 bg-white/40 hover:bg-white/60"}`} />
           ))}
         </div>
-        <button onClick={next} className="w-10 h-10 rounded-full border border-white/40 flex items-center justify-center text-white hover:bg-white/10 transition-colors">
-          <ChevronRight className="w-5 h-5" />
+        <button onClick={next} className="w-8 h-8 md:w-10 md:h-10 rounded-full border border-white/40 flex items-center justify-center text-white hover:bg-white/10 transition-colors">
+          <ChevronRight className="w-4 h-4 md:w-5 md:h-5" />
         </button>
       </div>
     </section>
