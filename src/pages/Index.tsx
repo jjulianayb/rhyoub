@@ -1,6 +1,7 @@
 import Hero from "@/components/Hero";
 import WhoWeAre from "@/components/WhoWeAre";
-import ChooseYourPain from "@/components/ChooseYourPain";
+import CursosSection from "@/components/CursosSection";
+import SolucoesEmpresasSection from "@/components/SolucoesEmpresasSection";
 import BeneficiosNegocio from "@/components/BeneficiosNegocio";
 import CtaConsultor from "@/components/CtaConsultor";
 import ClientLogos from "@/components/ClientLogos";
@@ -11,7 +12,8 @@ const Index = () => {
     <main>
       <Hero />
       <WhoWeAre />
-      <ChooseYourPain />
+      <CursosSection />
+      <SolucoesEmpresasSection />
       <BeneficiosNegocio />
       <CtaConsultor />
       <ClientLogos />
