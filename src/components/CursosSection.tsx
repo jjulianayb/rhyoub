@@ -6,6 +6,7 @@ import { useState } from "react";
 import solAcademias from "@/assets/sol-academias.jpg";
 import solPlataforma from "@/assets/sol-plataforma.jpg";
 import solCarreira from "@/assets/sol-carreira.jpg";
+import solDhoBp from "@/assets/sol-dho-bp.jpg";
 
 const cursos = [
   {
@@ -15,6 +16,14 @@ const cursos = [
     description: "Formação viva, prática e contínua para lideranças que cuidam de pessoas e de resultados.",
     detail: "Início: Sob demanda",
     href: "/programa-lideres",
+  },
+  {
+    image: solDhoBp,
+    tag: "Programa Executivo",
+    title: "Formação DHO & Business Partners youB",
+    description: "Imersão para elevar profissionais de DHO e BPs do operacional à mesa de decisões estratégicas.",
+    detail: "Início: Sob demanda",
+    href: "/programa-dho",
   },
   {
     image: solPlataforma,

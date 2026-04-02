@@ -10,6 +10,7 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import ProgramaLideres from "./pages/ProgramaLideres";
 import JornadasCultura from "./pages/JornadasCultura";
+import ProgramaDHO from "./pages/ProgramaDHO";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
