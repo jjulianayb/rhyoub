@@ -130,7 +130,7 @@ const Hero = () => {
         </div>
 
         {/* Carousel controls */}
-        <div className="absolute bottom-36 md:bottom-8 right-5 md:right-8 z-20 flex items-center gap-2 md:gap-3">
+        <div className="absolute top-20 md:top-auto md:bottom-8 right-5 md:right-8 z-20 flex items-center gap-2 md:gap-3">
           <button onClick={prev} className="w-8 h-8 md:w-10 md:h-10 rounded-full border border-white/40 flex items-center justify-center text-white hover:bg-white/10 transition-colors">
             <ChevronLeft className="w-4 h-4 md:w-5 md:h-5" />
           </button>
