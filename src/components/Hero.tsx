@@ -99,7 +99,7 @@ const Hero = () => {
             <AnimatePresence mode="wait">
               <motion.div key={current} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.6 }}>
                 <p className="text-white/70 text-xs md:text-sm font-semibold uppercase tracking-widest mb-3 md:mb-4">{slides[current].subtitle}</p>
-                <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.15] mb-4 md:mb-6 whitespace-pre-line">{slides[current].title}</h1>
+                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-[1.15] mb-4 md:mb-6 whitespace-pre-line">{slides[current].title}</h1>
                 <p className="text-sm md:text-xl text-white/80 mb-4 max-w-lg">{slides[current].description}</p>
                 {(slides[current] as any).supportText && (
                   <p className="hidden md:block text-sm text-white/50 mb-8 max-w-lg leading-relaxed">{(slides[current] as any).supportText}</p>
