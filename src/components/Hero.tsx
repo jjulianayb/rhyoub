@@ -78,7 +78,7 @@ const Hero = () => {
   return (
     <section id="top" className="relative">
       {/* Hero Slide Area */}
-      <div className="relative h-[85svh] md:h-[80vh] min-h-[500px] md:min-h-[600px] overflow-hidden">
+      <div className="relative h-[90svh] md:h-[92vh] min-h-[600px] md:min-h-[760px] overflow-hidden">
         <AnimatePresence mode="wait">
           <motion.div
             key={current}
@@ -94,12 +94,12 @@ const Hero = () => {
           </motion.div>
         </AnimatePresence>
 
-        <div className="relative z-10 h-full container mx-auto px-5 md:px-6 flex items-end md:items-center pb-32 md:pb-0">
+        <div className="relative z-10 h-full container mx-auto px-5 md:px-6 flex items-end pb-36 md:pb-40 pt-24 md:pt-28">
           <div className="max-w-2xl">
             <AnimatePresence mode="wait">
               <motion.div key={current} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.6 }}>
                 <p className="text-white/70 text-xs md:text-sm font-semibold uppercase tracking-widest mb-3 md:mb-4">{slides[current].subtitle}</p>
-                <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.15] mb-4 md:mb-6 whitespace-pre-line">{slides[current].title}</h1>
+                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-[1.15] mb-4 md:mb-6 whitespace-pre-line">{slides[current].title}</h1>
                 <p className="text-sm md:text-xl text-white/80 mb-4 max-w-lg">{slides[current].description}</p>
                 {(slides[current] as any).supportText && (
                   <p className="hidden md:block text-sm text-white/50 mb-8 max-w-lg leading-relaxed">{(slides[current] as any).supportText}</p>
@@ -130,7 +130,7 @@ const Hero = () => {
         </div>
 
         {/* Carousel controls */}
-        <div className="absolute bottom-36 md:bottom-8 right-5 md:right-8 z-20 flex items-center gap-2 md:gap-3">
+        <div className="absolute top-20 md:top-auto md:bottom-8 right-5 md:right-8 z-20 flex items-center gap-2 md:gap-3">
           <button onClick={prev} className="w-8 h-8 md:w-10 md:h-10 rounded-full border border-white/40 flex items-center justify-center text-white hover:bg-white/10 transition-colors">
             <ChevronLeft className="w-4 h-4 md:w-5 md:h-5" />
           </button>
