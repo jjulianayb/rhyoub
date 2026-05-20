@@ -78,7 +78,7 @@ const Hero = () => {
   return (
     <section id="top" className="relative">
       {/* Hero Slide Area */}
-      <div className="relative h-[85svh] md:h-[80vh] min-h-[500px] md:min-h-[600px] overflow-hidden">
+      <div className="relative h-[90svh] md:h-[88vh] min-h-[560px] md:min-h-[680px] overflow-hidden">
         <AnimatePresence mode="wait">
           <motion.div
             key={current}
