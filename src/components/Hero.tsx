@@ -94,7 +94,7 @@ const Hero = () => {
           </motion.div>
         </AnimatePresence>
 
-        <div className="relative z-10 h-full container mx-auto px-5 md:px-6 flex items-end md:items-center pb-32 md:pb-0">
+        <div className="relative z-10 h-full container mx-auto px-5 md:px-6 flex items-end md:items-center pb-32 md:pb-48">
           <div className="max-w-2xl">
             <AnimatePresence mode="wait">
               <motion.div key={current} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.6 }}>
