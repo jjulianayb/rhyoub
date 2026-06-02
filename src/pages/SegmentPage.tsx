@@ -21,8 +21,9 @@ const fadeUp = {
 };
 
 const SegmentPage = () => {
-  const { slug } = useParams();
-  const segment = getSegmentBySlug(slug || "");
+  const { pathname } = useLocation();
+  const slug = pathname.replace(/^\//, "");
+  const segment = getSegmentBySlug(slug);
 
   if (!segment) return <Navigate to="/" replace />;
 
