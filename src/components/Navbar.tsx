@@ -167,14 +167,14 @@ const Navbar = () => {
               <Link to="/" className="text-left py-3 px-3 rounded-lg text-sm font-medium text-muted-foreground hover:text-primary hover:bg-secondary/50">
                 Início
               </Link>
-              <p className="text-xs font-semibold text-primary uppercase tracking-wider px-3 pt-3 pb-1">Soluções</p>
-              {solutions.map((sol) => (
+              <p className="text-xs font-semibold text-primary uppercase tracking-wider px-3 pt-3 pb-1">Verticais</p>
+              {segments.map((seg) => (
                 <Link
-                  key={sol.slug}
-                  to={`/${sol.slug}`}
+                  key={seg.slug}
+                  to={`/${seg.slug}`}
                   className="text-left py-2.5 px-5 rounded-lg text-sm text-muted-foreground hover:text-primary hover:bg-secondary/50"
                 >
-                  {sol.title.split(" & ")[0]}
+                  {seg.name}
                 </Link>
               ))}
               <Link to="/sobre" className="text-left py-3 px-3 rounded-lg text-sm font-medium text-muted-foreground hover:text-primary hover:bg-secondary/50">
