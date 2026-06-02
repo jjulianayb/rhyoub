@@ -81,12 +81,12 @@ const Navbar = () => {
             <button
               onClick={() => setDropdownOpen(!dropdownOpen)}
               className={`inline-flex items-center gap-1 px-4 py-2 text-sm font-medium rounded-lg transition-colors ${
-                location.pathname.match(/^\/(academias|consultoria|carreira|sucessao|plataforma)/)
+                location.pathname.match(/^\/youb-/)
                   ? "text-primary bg-primary/5"
                   : "text-muted-foreground hover:text-primary hover:bg-primary/5"
               }`}
             >
-              Soluções
+              Verticais
               <ChevronDown className={`w-4 h-4 transition-transform ${dropdownOpen ? "rotate-180" : ""}`} />
             </button>
             <AnimatePresence>
@@ -98,20 +98,20 @@ const Navbar = () => {
                   transition={{ duration: 0.15 }}
                   className="absolute top-full left-0 mt-1 w-72 bg-card border border-border rounded-xl shadow-xl overflow-hidden z-50"
                 >
-                  {solutions.map((sol) => (
+                  {segments.map((seg) => (
                     <Link
-                      key={sol.slug}
-                      to={`/${sol.slug}`}
+                      key={seg.slug}
+                      to={`/${seg.slug}`}
                       className={`flex items-start gap-3 px-4 py-3 text-sm transition-colors hover:bg-primary/5 ${
-                        isActive(`/${sol.slug}`) ? "bg-primary/5 text-primary" : "text-foreground"
+                        isActive(`/${seg.slug}`) ? "bg-primary/5 text-primary" : "text-foreground"
                       }`}
                     >
                       <div className="w-10 h-10 rounded-lg overflow-hidden shrink-0 mt-0.5">
-                        <img src={sol.image} alt={sol.title} className="w-full h-full object-cover" />
+                        <img src={seg.image} alt={seg.name} className="w-full h-full object-cover" />
                       </div>
                       <div>
-                        <p className="font-medium leading-tight">{sol.title.split(" & ")[0]}</p>
-                        <p className="text-xs text-muted-foreground mt-0.5">{sol.tags.join(" · ")}</p>
+                        <p className="font-medium leading-tight">{seg.name}</p>
+                        <p className="text-xs text-muted-foreground mt-0.5">{seg.shortName}</p>
                       </div>
                     </Link>
                   ))}
