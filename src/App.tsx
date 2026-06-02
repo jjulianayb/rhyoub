@@ -11,6 +11,7 @@ import Contact from "./pages/Contact";
 import ProgramaLideres from "./pages/ProgramaLideres";
 import JornadasCultura from "./pages/JornadasCultura";
 import ProgramaDHO from "./pages/ProgramaDHO";
+import SegmentPage from "./pages/SegmentPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -29,6 +30,9 @@ const App = () => (
             <Route path="/programa-lideres" element={<ProgramaLideres />} />
             <Route path="/jornadas-cultura" element={<JornadasCultura />} />
             <Route path="/programa-dho" element={<ProgramaDHO />} />
+            <Route path="/youb-health" element={<SegmentPage />} />
+            <Route path="/youb-gov" element={<SegmentPage />} />
+            <Route path="/youb-educacao" element={<SegmentPage />} />
             <Route path="/:slug" element={<SolutionPage />} />
           </Route>
           <Route path="*" element={<NotFound />} />
