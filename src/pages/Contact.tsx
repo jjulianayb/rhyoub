@@ -40,7 +40,7 @@ const Contact = () => {
                   { icon: Phone, label: "WhatsApp", value: "(21) 99141-7327", href: WHATSAPP_LINK },
                   { icon: Mail, label: "E-mail", value: "contato@rhyoub.com.br", href: "mailto:contato@rhyoub.com.br" },
                   { icon: Instagram, label: "Instagram", value: "@youbusiness", href: "https://instagram.com/youbusiness" },
-                  { icon: MapPin, label: "Site", value: "www.rhyoub.com.br", href: "https://www.rhyoub.com.br" },
+                  { icon: MapPin, label: "Site", value: "rhyoub.com.br", href: "https://rhyoub.com.br" },
                 ].map((ch) => (
                   <a
                     key={ch.label}
