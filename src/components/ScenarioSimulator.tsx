@@ -67,7 +67,7 @@ const ScenarioSimulator = ({ solutionName }: Props) => {
       <div className="flex items-center gap-3 mb-6">
         <Calculator className="w-6 h-6 text-primary" />
         <h3 className="text-xl md:text-2xl font-bold text-foreground">
-          Simule um cenário para a sua empresa
+          Estime um cenário de implantação para a sua empresa
         </h3>
       </div>
 
@@ -115,7 +115,7 @@ const ScenarioSimulator = ({ solutionName }: Props) => {
       </div>
 
       <button onClick={calculate} disabled={!canCalc} className="bg-primary text-primary-foreground px-6 py-3 rounded-xl font-semibold transition-all hover:shadow-lg hover:shadow-primary/20 disabled:opacity-40 disabled:cursor-not-allowed">
-        Calcular investimento estimado
+        Estimar investimento do projeto
       </button>
 
       <AnimatePresence>

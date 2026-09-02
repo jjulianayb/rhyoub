@@ -11,21 +11,21 @@ const plans = [
     name: "Essencial",
     plan: "youB Start",
     description: "Para empresas que estão começando a estruturar.",
-    features: ["Diagnóstico inicial", "Trilha base de 3 meses", "1 workshop ao vivo/mês", "Relatório de impacto"],
+    features: ["Pessoas e estrutura organizacional", "Ciclos de desenvolvimento", "Check-ins e feedbacks", "Acompanhamento inicial"],
     highlight: false,
   },
   {
     name: "Estratégico",
     plan: "youB Pro",
     description: "Para empresas que querem transformação com profundidade.",
-    features: ["Diagnóstico completo + 9-Box", "Trilha de 6–12 meses", "Mentoria individual", "Plataforma digital + IA", "Dashboards de progresso"],
+    features: ["Tudo do Essencial", "Visão por perfil de acesso", "PDI e acompanhamento de desenvolvimento", "Dashboards de acompanhamento", "Implantação orientada"],
     highlight: true,
   },
   {
     name: "Ecossistema",
     plan: "youB Enterprise",
     description: "Para empresas que querem um ecossistema completo.",
-    features: ["Tudo do Estratégico", "Consultoria contínua", "Academia autoral completa", "Plano de sucessão integrado", "Suporte dedicado 12 meses"],
+    features: ["Tudo do Estratégico", "Configuração para múltiplas áreas", "Governança e suporte dedicado", "Expansão por novas jornadas", "Integração com consultoria"],
     highlight: false,
   },
 ];
@@ -33,6 +33,7 @@ const plans = [
 const SolutionPage = () => {
   const { slug } = useParams<{ slug: string }>();
   const solution = getSolutionBySlug(slug || "");
+  const isPlatform = solution?.id === "plataforma";
 
   if (!solution) return <Navigate to="/" replace />;
 
@@ -129,12 +130,16 @@ const SolutionPage = () => {
         </div>
       </section>
 
-      {/* Planos e investimento */}
-      <section className="section-padding bg-secondary/20">
+      {/* Planos e investimento — exclusivo da jornada da Plataforma */}
+      {isPlatform && (
+        <section className="section-padding bg-secondary/20">
         <div className="container mx-auto max-w-5xl">
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
             <p className="text-primary text-sm font-semibold uppercase tracking-widest mb-3">Investimento</p>
-            <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground mb-10">Planos e investimento</h2>
+            <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground mb-3">Formatos e planos</h2>
+            <p className="text-muted-foreground max-w-2xl mb-10 leading-relaxed">
+              O ecossistema youB é configurado conforme o contexto, o público e a jornada de cada organização. Converse com nossa equipe para conhecer a composição mais adequada.
+            </p>
             <div className="grid md:grid-cols-3 gap-6">
               {plans.map((plan, i) => (
                 <motion.div
@@ -184,7 +189,8 @@ const SolutionPage = () => {
             </div>
           </motion.div>
         </div>
-      </section>
+        </section>
+      )}
 
       {/* Calculadora */}
       <section className="section-padding">

@@ -1,4 +1,6 @@
 import PortfolioHero from "@/components/PortfolioHero";
+import TrustExperienceSection from "@/components/TrustExperienceSection";
+import ProductEcosystemSection from "@/components/ProductEcosystemSection";
 import AboutYoubSection from "@/components/AboutYoubSection";
 import SegmentsGrid from "@/components/SegmentsGrid";
 import SolucoesEmpresasSection from "@/components/SolucoesEmpresasSection";
@@ -11,6 +13,8 @@ const Index = () => {
   return (
     <main>
       <PortfolioHero />
+      <TrustExperienceSection />
+      <ProductEcosystemSection />
       <AboutYoubSection />
       <SegmentsGrid />
       <SolucoesEmpresasSection />
