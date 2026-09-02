@@ -44,10 +44,10 @@ const Footer = () => {
             you<span className="text-primary">B</span>.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-background/60">
-            <span>Site: <a href="https://www.rhyoub.com.br" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">www.rhyoub.com.br</a></span>
-            <span>E-mail: contato@rhyoub.com.br</span>
+            <span>Site: <a href="https://rhyoub.com.br" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">rhyoub.com.br</a></span>
+            <span>E-mail: <a href="mailto:contato@rhyoub.com.br" className="hover:text-primary transition-colors">contato@rhyoub.com.br</a></span>
             <span>WhatsApp: (21) 99141-7327</span>
-            <span>Instagram: @youbusiness</span>
+            <span>Instagram: <a href="https://instagram.com/youbusiness" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">@youbusiness</a></span>
           </div>
           <p className="text-background/40 text-xs">
             Veja mais sobre a youB na mídia: <span className="font-medium">Brasil Agora</span> | <span className="font-medium">Valor Business</span> | <span className="font-medium">Ego Brasil</span>
