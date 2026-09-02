@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { segments } from "@/data/segments";
+import { solutions } from "@/data/solutions";
 
 const WHATSAPP_LINK = "https://wa.me/5521991417327?text=Olá,%20vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20sessão%20estratégica.";
 
@@ -10,7 +11,9 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [solutionsOpen, setSolutionsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const solutionsRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
 
   useEffect(() => {
@@ -22,12 +25,16 @@ const Navbar = () => {
   useEffect(() => {
     setOpen(false);
     setDropdownOpen(false);
+    setSolutionsOpen(false);
   }, [location.pathname]);
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
         setDropdownOpen(false);
+      }
+      if (solutionsRef.current && !solutionsRef.current.contains(e.target as Node)) {
+        setSolutionsOpen(false);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
@@ -53,7 +60,7 @@ const Navbar = () => {
           <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="text-xs text-muted-foreground hover:text-primary transition-colors">
             (21) 99141-7327
           </a>
-          <span className="text-xs text-muted-foreground">contato@rhyoub.com.br</span>
+          <a href="mailto:contato@rhyoub.com.br" className="text-xs text-muted-foreground hover:text-primary transition-colors">contato@rhyoub.com.br</a>
         </div>
       </div>
 
@@ -80,6 +87,8 @@ const Navbar = () => {
           <div ref={dropdownRef} className="relative">
             <button
               onClick={() => setDropdownOpen(!dropdownOpen)}
+              aria-expanded={dropdownOpen}
+              aria-haspopup="menu"
               className={`inline-flex items-center gap-1 px-4 py-2 text-sm font-medium rounded-lg transition-colors ${
                 location.pathname.match(/^\/youb-/)
                   ? "text-primary bg-primary/5"
@@ -120,6 +129,52 @@ const Navbar = () => {
             </AnimatePresence>
           </div>
 
+          {/* Solutions dropdown */}
+          <div ref={solutionsRef} className="relative">
+            <button
+              onClick={() => { setSolutionsOpen(!solutionsOpen); setDropdownOpen(false); }}
+              aria-expanded={solutionsOpen}
+              aria-haspopup="menu"
+              className={`inline-flex items-center gap-1 px-4 py-2 text-sm font-medium rounded-lg transition-colors ${
+                location.pathname.match(/^\/(academias|consultoria|carreira|sucessao|plataforma)/)
+                  ? "text-primary bg-primary/5"
+                  : "text-muted-foreground hover:text-primary hover:bg-primary/5"
+              }`}
+            >
+              Soluções
+              <ChevronDown className={`w-4 h-4 transition-transform ${solutionsOpen ? "rotate-180" : ""}`} />
+            </button>
+            <AnimatePresence>
+              {solutionsOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 8 }}
+                  transition={{ duration: 0.15 }}
+                  className="absolute top-full left-0 mt-1 w-80 bg-card border border-border rounded-xl shadow-xl overflow-hidden z-50"
+                >
+                  {solutions.map((solution) => (
+                    <Link
+                      key={solution.slug}
+                      to={`/${solution.slug}`}
+                      className={`flex items-start gap-3 px-4 py-3 text-sm transition-colors hover:bg-primary/5 ${
+                        isActive(`/${solution.slug}`) ? "bg-primary/5 text-primary" : "text-foreground"
+                      }`}
+                    >
+                      <div className="w-10 h-10 rounded-lg overflow-hidden shrink-0 mt-0.5">
+                        <img src={solution.image} alt="" className="w-full h-full object-cover" />
+                      </div>
+                      <div>
+                        <p className="font-medium leading-tight">{solution.title}</p>
+                        <p className="text-xs text-muted-foreground mt-0.5">{solution.subtitle}</p>
+                      </div>
+                    </Link>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
           <Link
             to="/sobre"
             className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${
@@ -147,7 +202,7 @@ const Navbar = () => {
           >
             Agendar Conversa
           </a>
-          <button onClick={() => setOpen(!open)} className="md:hidden p-2 rounded-lg hover:bg-secondary transition-colors" aria-label="Menu">
+          <button onClick={() => setOpen(!open)} className="md:hidden p-2 rounded-lg hover:bg-secondary transition-colors" aria-label={open ? "Fechar menu" : "Abrir menu"} aria-expanded={open}>
             {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
@@ -175,6 +230,16 @@ const Navbar = () => {
                   className="text-left py-2.5 px-5 rounded-lg text-sm text-muted-foreground hover:text-primary hover:bg-secondary/50"
                 >
                   {seg.name}
+                </Link>
+              ))}
+              <p className="text-xs font-semibold text-primary uppercase tracking-wider px-3 pt-4 pb-1">Soluções</p>
+              {solutions.map((solution) => (
+                <Link
+                  key={solution.slug}
+                  to={`/${solution.slug}`}
+                  className="text-left py-2.5 px-5 rounded-lg text-sm text-muted-foreground hover:text-primary hover:bg-secondary/50"
+                >
+                  {solution.title}
                 </Link>
               ))}
               <Link to="/sobre" className="text-left py-3 px-3 rounded-lg text-sm font-medium text-muted-foreground hover:text-primary hover:bg-secondary/50">
