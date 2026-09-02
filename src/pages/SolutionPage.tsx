@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle2, ChevronRight } from "lucide-react";
 import { getSolutionBySlug } from "@/data/solutions";
 import ScenarioSimulator from "@/components/ScenarioSimulator";
+import PlatformExperienceSection from "@/components/PlatformExperienceSection";
 
 const WHATSAPP_BASE = "https://wa.me/5521991417327?text=";
 
@@ -129,6 +130,8 @@ const SolutionPage = () => {
           </motion.div>
         </div>
       </section>
+
+      {isPlatform && <PlatformExperienceSection />}
 
       {/* Planos e investimento — exclusivo da jornada da Plataforma */}
       {isPlatform && (
