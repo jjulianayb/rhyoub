@@ -1,6 +1,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { ArrowRight, ChevronLeft, ChevronRight, Briefcase, GitBranch, Shield, Monitor, GraduationCap } from "lucide-react";
+import { Link } from "react-router-dom";
 
 import solConsultoria from "@/assets/sol-consultoria.jpg";
 import solCarreira from "@/assets/sol-carreira.jpg";
@@ -8,43 +9,41 @@ import solSucessao from "@/assets/sol-sucessao.jpg";
 import solPlataforma from "@/assets/sol-plataforma.jpg";
 import solAcademias from "@/assets/sol-academias.jpg";
 
-const WHATSAPP_BASE = "https://wa.me/5521991417327?text=";
-
 const solucoes = [
   {
     icon: GraduationCap,
     image: solAcademias,
+    slug: "academias",
     title: "Academias Corporativas & Programas de Liderança",
     description: "Do treinamento pontual à aprendizagem contínua com trilhas customizadas.",
-    whatsapp: encodeURIComponent("Olá, quero estruturar uma Academia Corporativa."),
   },
   {
     icon: Briefcase,
     image: solConsultoria,
+    slug: "consultoria",
     title: "Consultoria Estratégica & Projetos de DHO",
     description: "Estrutura, processos e visão de longo prazo para pessoas.",
-    whatsapp: encodeURIComponent("Olá, preciso estruturar o DHO da minha empresa."),
   },
   {
     icon: GitBranch,
     image: solCarreira,
+    slug: "carreira",
     title: "Arquitetura de Carreira & Cargos",
     description: "Clareza de trajetória, critérios e perspectiva de crescimento.",
-    whatsapp: encodeURIComponent("Olá, quero organizar carreira e cargos na minha empresa."),
   },
   {
     icon: Shield,
     image: solSucessao,
+    slug: "sucessao",
     title: "Sucessão Estratégica & Continuidade",
     description: "Liderar a transição com plano de sucessão e retenção.",
-    whatsapp: encodeURIComponent("Olá, quero um plano de sucessão para minha empresa."),
   },
   {
     icon: Monitor,
     image: solPlataforma,
+    slug: "plataforma",
     title: "Plataforma Digital & IA Mentora",
     description: "Centralize conteúdos, dados e trilhas com inteligência artificial.",
-    whatsapp: encodeURIComponent("Olá, quero conhecer o ecossistema digital youB."),
   },
 ];
 
@@ -76,10 +75,10 @@ const SolucoesEmpresasSection = () => {
             </h2>
           </div>
           <div className="hidden md:flex items-center gap-2">
-            <button onClick={() => scroll("left")} className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-primary/40 transition-colors">
+            <button aria-label="Ver soluções anteriores" onClick={() => scroll("left")} className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-primary/40 transition-colors">
               <ChevronLeft className="w-5 h-5" />
             </button>
-            <button onClick={() => scroll("right")} className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-primary/40 transition-colors">
+            <button aria-label="Ver próximas soluções" onClick={() => scroll("right")} className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-primary/40 transition-colors">
               <ChevronRight className="w-5 h-5" />
             </button>
           </div>
@@ -92,16 +91,14 @@ const SolucoesEmpresasSection = () => {
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
           {solucoes.map((sol, i) => (
-            <motion.a
+            <motion.div
               key={sol.title}
-              href={`${WHATSAPP_BASE}${sol.whatsapp}`}
-              target="_blank"
-              rel="noopener noreferrer"
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: i * 0.1 }}
               className="group flex-shrink-0 w-[300px] md:w-[340px] bg-card border border-border rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:border-primary/30 transition-all duration-300 snap-start"
             >
+              <Link to={`/${sol.slug}`} className="block">
               <div className="relative h-44 overflow-hidden">
                 <img
                   src={sol.image}
@@ -121,10 +118,11 @@ const SolucoesEmpresasSection = () => {
                 <h3 className="font-bold text-foreground text-base mb-2 mt-1 leading-snug line-clamp-2">{sol.title}</h3>
                 <p className="text-sm text-muted-foreground mb-4 leading-relaxed line-clamp-3">{sol.description}</p>
                 <span className="text-sm font-semibold text-primary group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
-                  Saiba mais <ArrowRight className="w-3.5 h-3.5" />
+                  Conhecer solução <ArrowRight className="w-3.5 h-3.5" />
                 </span>
               </div>
-            </motion.a>
+              </Link>
+            </motion.div>
           ))}
         </div>
       </div>
