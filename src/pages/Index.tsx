@@ -1,6 +1,7 @@
 import PortfolioHero from "@/components/PortfolioHero";
 import AboutYoubSection from "@/components/AboutYoubSection";
 import SegmentsGrid from "@/components/SegmentsGrid";
+import SolucoesEmpresasSection from "@/components/SolucoesEmpresasSection";
 import BeneficiosNegocio from "@/components/BeneficiosNegocio";
 import CtaConsultor from "@/components/CtaConsultor";
 import ClientLogos from "@/components/ClientLogos";
@@ -12,6 +13,7 @@ const Index = () => {
       <PortfolioHero />
       <AboutYoubSection />
       <SegmentsGrid />
+      <SolucoesEmpresasSection />
       <BeneficiosNegocio />
       <CtaConsultor />
       <ClientLogos />
