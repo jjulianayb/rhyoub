@@ -10,7 +10,7 @@ const WHATSAPP_LINK =
 const PortfolioHero = () => {
   return (
     <section className="relative h-[92svh] min-h-[640px] overflow-hidden flex items-center">
-      <img src={heroFdc} alt="youB" className="absolute inset-0 w-full h-full object-cover" loading="eager" />
+      <img src={heroFdc} alt="Equipe executiva reunida em torno de um dashboard de gestão" className="absolute inset-0 w-full h-full object-cover" loading="eager" />
       <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-black/20" />
 
       <div className="relative z-10 container mx-auto px-5 md:px-6 pt-20">
@@ -31,18 +31,18 @@ const PortfolioHero = () => {
           </div>
 
           <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white leading-[1.15] mb-5">
-            Ecossistema de desenvolvimento humano, inteligência organizacional e IA aplicada para instituições de grande escala.
+            Desenvolvimento humano e IA para transformar líderes, cultura e resultados.
           </h1>
           <p className="text-base md:text-xl text-white/80 max-w-2xl mb-8">
-            Capacitação, cultura, educomunicação e inteligência operacional com governança, indicadores e escalabilidade.
+            Soluções integradas de DHO, educação corporativa e inteligência organizacional para empresas e instituições de grande escala.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
             <button
-              onClick={() => document.getElementById("verticais")?.scrollIntoView({ behavior: "smooth" })}
+              onClick={() => document.getElementById("solucoes-empresas")?.scrollIntoView({ behavior: "smooth" })}
               className="inline-flex items-center justify-center gap-2 bg-white text-foreground px-7 py-3.5 rounded-lg text-sm font-semibold transition-all hover:bg-white/90"
             >
-              Explorar verticais
+              Explorar soluções
             </button>
             <a
               href={WHATSAPP_LINK}
@@ -50,7 +50,7 @@ const PortfolioHero = () => {
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 border-2 border-white/60 text-white px-7 py-3.5 rounded-lg text-sm font-semibold transition-all hover:bg-white/10 hover:border-white"
             >
-              Agendar conversa estratégica
+              Falar com especialista
               <ArrowRight className="w-4 h-4" />
             </a>
           </div>
