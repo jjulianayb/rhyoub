@@ -4,6 +4,7 @@ import { ArrowRight, CheckCircle2, ChevronRight } from "lucide-react";
 import { getSolutionBySlug } from "@/data/solutions";
 import ScenarioSimulator from "@/components/ScenarioSimulator";
 import PlatformExperienceSection from "@/components/PlatformExperienceSection";
+import LeadCaptureSection from "@/components/LeadCaptureSection";
 
 const WHATSAPP_BASE = "https://wa.me/5521991417327?text=";
 
@@ -132,6 +133,7 @@ const SolutionPage = () => {
       </section>
 
       {isPlatform && <PlatformExperienceSection />}
+      {isPlatform && <LeadCaptureSection />}
 
       {/* Planos e investimento — exclusivo da jornada da Plataforma */}
       {isPlatform && (
