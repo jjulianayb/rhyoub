@@ -179,7 +179,7 @@ const FloatingChatbot = () => {
   const showInput = ["name", "leaders", "critical", "location"].includes(step);
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50">
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -187,7 +187,8 @@ const FloatingChatbot = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.25 }}
-            className="absolute bottom-20 right-0 w-[380px] max-h-[560px] rounded-2xl border border-border bg-card shadow-2xl shadow-primary/10 flex flex-col overflow-hidden"
+            role="dialog" aria-label="Assistente youB"
+            className="absolute bottom-20 right-0 w-[min(380px,calc(100vw-2rem))] max-h-[560px] rounded-2xl border border-border bg-card shadow-2xl shadow-primary/10 flex flex-col overflow-hidden"
           >
             {/* Header */}
             <div className="flex items-center justify-between p-4 border-b border-border bg-secondary/50">
@@ -202,6 +203,7 @@ const FloatingChatbot = () => {
               </div>
               <button
                 onClick={() => { setIsOpen(false); resetChat(); }}
+                aria-label="Fechar assistente youB"
                 className="p-1.5 rounded-lg hover:bg-muted transition-colors"
               >
                 <X className="w-4 h-4 text-muted-foreground" />
@@ -285,6 +287,7 @@ const FloatingChatbot = () => {
                   />
                   <button
                     type="submit"
+                    aria-label="Enviar mensagem"
                     className="bg-primary text-primary-foreground p-2.5 rounded-xl hover:shadow-lg hover:shadow-primary/20 transition-all"
                   >
                     <Send className="w-4 h-4" />
@@ -301,6 +304,7 @@ const FloatingChatbot = () => {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen(!isOpen)}
+        aria-label={isOpen ? "Fechar assistente youB" : "Abrir assistente youB"}
         className="w-14 h-14 rounded-full bg-primary text-primary-foreground flex items-center justify-center shadow-lg shadow-primary/30"
       >
         {isOpen ? <X className="w-6 h-6" /> : <MessageCircle className="w-6 h-6" />}
