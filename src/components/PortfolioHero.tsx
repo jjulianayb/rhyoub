@@ -26,15 +26,15 @@ const PortfolioHero = () => {
             </span>
             <span className="text-white/40">|</span>
             <span className="text-sm md:text-base text-white/70 font-medium uppercase tracking-widest">
-              Portfólio Institucional
+              Ecossistema de desenvolvimento humano
             </span>
           </div>
 
           <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white leading-[1.15] mb-5">
-            Desenvolvimento humano e IA para transformar líderes, cultura e resultados.
+            A experiência da youB transformada em um ecossistema inteligente para desenvolver pessoas e organizações.
           </h1>
           <p className="text-base md:text-xl text-white/80 max-w-2xl mb-8">
-            Soluções integradas de DHO, educação corporativa e inteligência organizacional para empresas e instituições de grande escala.
+            Método, tecnologia e inteligência artificial para organizar pessoas, desenvolver lideranças e apoiar decisões estratégicas com mais clareza e continuidade.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
@@ -42,7 +42,7 @@ const PortfolioHero = () => {
               onClick={() => document.getElementById("solucoes-empresas")?.scrollIntoView({ behavior: "smooth" })}
               className="inline-flex items-center justify-center gap-2 bg-white text-foreground px-7 py-3.5 rounded-lg text-sm font-semibold transition-all hover:bg-white/90"
             >
-              Explorar soluções
+              Conhecer o ecossistema
             </button>
             <a
               href={WHATSAPP_LINK}
@@ -50,7 +50,7 @@ const PortfolioHero = () => {
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 border-2 border-white/60 text-white px-7 py-3.5 rounded-lg text-sm font-semibold transition-all hover:bg-white/10 hover:border-white"
             >
-              Falar com especialista
+              Agendar uma demonstração
               <ArrowRight className="w-4 h-4" />
             </a>
           </div>
