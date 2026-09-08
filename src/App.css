@@ -511,7 +511,7 @@
 .metric-trend { position: absolute; right: 16px; bottom: 18px; width: 42px; height: 18px; opacity: .22; background: linear-gradient(145deg, transparent 44%, #8f7cf4 46% 52%, transparent 54%) 0 100% / 14px 14px repeat-x; transform: translateY(5px); }
 .metric-trend::after { content: ""; position: absolute; right: 0; bottom: 7px; width: 7px; height: 7px; border-top: 2px solid #8f7cf4; border-right: 2px solid #8f7cf4; transform: rotate(45deg); }
 .metric strong { transition: color .3s ease, transform .3s ease; }
-.metric:has(strong) strong { animation: metric-highlight .9s ease both; }
+.metric.is-complete strong { animation: metric-highlight .9s ease both; }
 .journey-demo-label { display: flex; justify-content: space-between; gap: 8px; margin-top: 15px; color: #9b94ab; font-size: 7px; font-weight: 800; letter-spacing: .1em; }
 .journey-demo-label span { color: #6a9b8d; letter-spacing: .02em; text-transform: none; }
 .journey-mini-kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; margin-top: 9px; }
