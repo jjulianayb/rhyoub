@@ -391,3 +391,19 @@
   .redesign-page .journey-halo, .redesign-page .journey-float { animation: none; }
   .redesign-page .journey-line span, .redesign-page .journey-bars span, .redesign-page .journey-flow button i { transition: none; }
 }
+
+/* Bee: avatar oficial em composição proporcional, nunca como ícone infantilizado. */
+.redesign-page .hero-product .bee-card { width: 246px; align-items: center; padding: 14px; }
+.redesign-page .hero-product .bee-card .bee-avatar { width: 54px; height: 74px; border-radius: 14px; }
+.redesign-page .journey-bee-note { width: min(320px, 72%); padding: 12px; }
+.redesign-page .journey-bee-note .bee-avatar-journey { width: 57px; height: 78px; border-radius: 14px; }
+.redesign-page .bee-section .bee-avatar-large { width: 76px; height: 101px; border-radius: 18px; }
+.redesign-page .final-bee-card .bee-avatar.large { width: 64px; height: 83px; border-radius: 17px; }
+@media (max-width: 640px) {
+  .redesign-page .hero-product .bee-card { width: 204px; padding: 11px; }
+  .redesign-page .hero-product .bee-card .bee-avatar { width: 45px; height: 61px; }
+  .redesign-page .journey-bee-note { width: auto; }
+  .redesign-page .journey-bee-note .bee-avatar-journey { width: 48px; height: 67px; }
+  .redesign-page .bee-section .bee-avatar-large { width: 60px; height: 82px; }
+  .redesign-page .final-bee-card .bee-avatar.large { width: 55px; height: 72px; }
+}
