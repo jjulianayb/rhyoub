@@ -141,9 +141,9 @@ const PlatformDemo = () => {
           <p>Uma visão integrada para transformar dados de pessoas em contexto, desenvolvimento e próxima ação.</p>
         </div>
         <div className="platform-view-switch" role="tablist" aria-label="Visualização da plataforma">
-          {(["desktop", "mobile"] as ProductView[]).map((option) => <button key={option} type="button" role="tab" aria-selected={view === option} className={view === option ? "is-selected" : ""} onClick={() => setView(option)}>{option === "desktop" ? "Desktop" : "Mobile"}</button>)}
+          {(["desktop", "mobile"] as ProductView[]).map((option) => <button key={option} type="button" role="tab" aria-selected={view === option} aria-controls="platform-demo-panel" tabIndex={view === option ? 0 : -1} className={view === option ? "is-selected" : ""} onClick={() => setView(option)}>{option === "desktop" ? "Desktop" : "Mobile"}</button>)}
         </div>
-        <div className={`platform-demo-stage is-${view}`}>
+        <div className={`platform-demo-stage is-${view}`} id="platform-demo-panel" role="tabpanel" aria-live="polite">
           <div className="platform-demo-glow" />
           {view === "desktop" ? <ProductScreen compact /> : <MobileProductScreen />}
         </div>
