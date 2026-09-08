@@ -466,6 +466,11 @@
   .redesign-page .journey-panel { grid-template-columns: 1fr .72fr; }
 }
 
+@media (min-width: 981px) {
+  .redesign-page .hero-layout { grid-template-columns: minmax(390px, .78fr) minmax(0, 1.22fr); }
+  .redesign-page .hero-copy h1 { max-width: 520px; font-size: clamp(2.55rem, 3.45vw, 3.55rem); }
+}
+
 @media (max-width: 640px) {
   .redesign-page .saas-hero { padding: 78px 0 20px; }
   .redesign-page .hero-layout { gap: 17px; }
