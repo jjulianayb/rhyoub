@@ -94,7 +94,11 @@ const MetricCount = ({ target, prefix = "", suffix = "", label }: { target: numb
 
   useEffect(() => {
     const node = ref.current;
-    if (!node || typeof IntersectionObserver === "undefined") return;
+    if (!node) return;
+    if (typeof IntersectionObserver === "undefined") {
+      setValue(target);
+      return;
+    }
     const observer = new IntersectionObserver(([entry]) => {
       if (!entry.isIntersecting || hasAnimated.current) return;
       hasAnimated.current = true;
@@ -113,7 +117,7 @@ const MetricCount = ({ target, prefix = "", suffix = "", label }: { target: numb
     return () => observer.disconnect();
   }, [target]);
 
-  return <div ref={ref} className="metric"><strong>{prefix}{value.toLocaleString("pt-BR")}{suffix}</strong><span>{label}</span><i className="metric-trend" aria-hidden="true" /></div>;
+  return <div ref={ref} className="metric"><strong>{prefix}{value}{suffix}</strong><span>{label}</span><i className="metric-trend" aria-hidden="true" /></div>;
 };
 
 const ProductScreen = ({ compact = false }: { compact?: boolean }) => (
