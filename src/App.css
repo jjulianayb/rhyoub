@@ -467,8 +467,8 @@
 }
 
 @media (min-width: 981px) {
-  .redesign-page .hero-layout { grid-template-columns: minmax(390px, .78fr) minmax(0, 1.22fr); }
-  .redesign-page .hero-copy h1 { max-width: 520px; font-size: clamp(2.55rem, 3.45vw, 3.55rem); }
+  .redesign-page .hero-layout { grid-template-columns: minmax(410px, .88fr) minmax(0, 1.12fr); }
+  .redesign-page .hero-copy h1 { max-width: 540px; font-size: clamp(2.35rem, 3.05vw, 3.2rem); line-height: .98; }
 }
 
 @media (max-width: 640px) {
