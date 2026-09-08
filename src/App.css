@@ -407,3 +407,95 @@
   .redesign-page .bee-section .bee-avatar-large { width: 60px; height: 82px; }
   .redesign-page .final-bee-card .bee-avatar.large { width: 55px; height: 72px; }
 }
+
+/* Composição aprovada: produto, dados e decisão ocupam o mesmo campo visual. */
+.redesign-page .saas-hero { padding: 104px 0 30px; background: radial-gradient(circle at 72% 30%, rgba(143, 112, 242, .18), transparent 34%), linear-gradient(180deg, #fbfaff 0%, #f3efff 100%); }
+.redesign-page .hero-layout { grid-template-columns: minmax(285px, .67fr) minmax(0, 1.55fr); gap: 28px; align-items: center; }
+.redesign-page .hero-copy h1 { max-width: 470px; font-size: clamp(2.45rem, 4vw, 4.05rem); line-height: 1; }
+.redesign-page .hero-lede { max-width: 410px; margin-top: 18px; font-size: 14px; line-height: 1.45; }
+.redesign-page .hero-actions { margin-top: 22px; }
+.redesign-page .hero-proof { max-width: 430px; gap: 9px 14px; margin-top: 18px; }
+.redesign-page .hero-product { min-height: 470px; padding: 8px 27px 34px 0; }
+.redesign-page .hero-product::after { content: "DADOS  ·  CONTEXTO  ·  AÇÃO"; position: absolute; right: 48px; bottom: 0; z-index: 2; padding: 9px 13px; border: 1px solid rgba(115,87,243,.16); border-radius: 10px; color: #756b93; background: rgba(255,255,255,.75); font-size: 8px; font-weight: 800; letter-spacing: .13em; }
+.redesign-page .hero-product .product-browser { width: 100%; transform: perspective(1700px) rotateY(-3deg) rotateX(1deg); }
+.redesign-page .hero-product .bee-card { right: -4px; bottom: 8px; }
+.redesign-page .metrics-strip { position: relative; z-index: 4; margin-top: -8px; border-radius: 16px 16px 0 0; box-shadow: 0 -10px 30px rgba(48,32,100,.12); }
+.redesign-page .metrics-grid { grid-template-columns: 1.05fr repeat(4, 1fr); }
+.redesign-page .metrics-intro, .redesign-page .metric { min-height: 104px; padding-top: 22px; padding-bottom: 22px; }
+.redesign-page .problem-section { position: relative; z-index: 3; padding: 30px 0 34px; background: #201d3b; color: #fff; }
+.redesign-page .problem-grid { grid-template-columns: .86fr 1.14fr; gap: 48px; align-items: center; }
+.redesign-page .problem-grid h2 { max-width: 530px; margin-top: 8px; color: #fff; font-size: clamp(1.6rem, 2.8vw, 2.55rem); line-height: 1.02; }
+.redesign-page .problem-grid p { max-width: 560px; margin: 0; color: #c2bdd3; font-size: 13px; line-height: 1.5; }
+.redesign-page .problem-grid .text-link { margin-top: 12px; color: #c5b9ff; }
+.redesign-page .platform-demo-section { position: relative; padding: 72px 0 76px; background: #f2efff; }
+.redesign-page .platform-demo-heading { grid-template-columns: .86fr 1.14fr; gap: 44px; }
+.redesign-page .platform-demo-heading h2 { font-size: clamp(2rem, 3.1vw, 3rem); }
+.redesign-page .platform-demo-heading p { margin: 0; font-size: 13px; line-height: 1.5; }
+.redesign-page .platform-view-switch { margin: 22px 0 18px; }
+.redesign-page .platform-demo-stage { min-height: 430px; padding: 18px 4%; border-radius: 26px; background: linear-gradient(145deg, #d7ccff, #fff 53%, #d9f2ee); }
+.redesign-page .platform-demo-stage::after { content: "LEITURA ORGANIZADA   •   SUPERVISÃO HUMANA   •   AÇÃO RECOMENDADA"; position: absolute; right: 25px; bottom: 18px; z-index: 2; padding: 8px 11px; border: 1px solid rgba(115,87,243,.14); border-radius: 8px; color: #867d9e; background: rgba(255,255,255,.78); font-size: 7px; font-weight: 800; letter-spacing: .08em; }
+.redesign-page .platform-demo-stage .product-browser { width: min(960px, 100%); }
+.redesign-page .journey-section { padding: 76px 0 82px; background: #fff; }
+.redesign-page .journey-heading { display: grid; grid-template-columns: .95fr 1.05fr; gap: 36px; align-items: end; max-width: none; margin-bottom: 32px; }
+.redesign-page .journey-heading h2 { margin-top: 9px; font-size: clamp(2rem, 3.1vw, 3rem); }
+.redesign-page .journey-heading p { max-width: 500px; margin: 0; font-size: 13px; line-height: 1.5; }
+.redesign-page .journey-flow { margin-bottom: 26px; }
+.redesign-page .journey-panel { grid-template-columns: 1.32fr .68fr; gap: 30px; min-height: 382px; padding: 21px; border-radius: 22px; }
+.redesign-page .journey-dashboard { width: min(470px, 82%); }
+.redesign-page .journey-copy h3 { font-size: clamp(1.8rem, 3vw, 2.65rem); }
+.redesign-page .capabilities-section { padding: 78px 0 82px; background: #f7f5fc; }
+.redesign-page .capabilities-heading { display: grid; grid-template-columns: .9fr 1.1fr; gap: 36px; align-items: end; max-width: none; margin-bottom: 28px; }
+.redesign-page .capabilities-heading h2 { font-size: clamp(2rem, 3vw, 2.9rem); }
+.redesign-page .capabilities-heading p { margin: 0; font-size: 13px; line-height: 1.5; }
+.redesign-page .capability-ecosystem-grid { gap: 11px; }
+.redesign-page .capability-group { box-shadow: 0 9px 24px rgba(44,33,88,.05); }
+.redesign-page .bee-section { position: relative; padding: 78px 0; background: #eae4ff; }
+.redesign-page .bee-section-grid { grid-template-columns: 1.18fr .82fr; gap: 45px; }
+.redesign-page .bee-product-card { position: relative; padding: 22px; }
+.redesign-page .bee-copy h2 { font-size: clamp(2rem, 3.1vw, 2.95rem); }
+.redesign-page .authority-section { padding: 64px 0; }
+.redesign-page .client-lane { margin-top: 32px; }
+.redesign-page .final-cta { padding: 76px 0; }
+.redesign-page .contact-section { padding: 78px 0; }
+
+@media (max-width: 980px) {
+  .redesign-page .hero-layout { grid-template-columns: 1fr; gap: 22px; }
+  .redesign-page .hero-copy { max-width: 720px; }
+  .redesign-page .hero-product { width: min(900px, 100%); margin: 0 auto; }
+  .redesign-page .problem-grid, .redesign-page .platform-demo-heading, .redesign-page .journey-heading, .redesign-page .capabilities-heading { grid-template-columns: 1fr; gap: 15px; }
+  .redesign-page .journey-panel { grid-template-columns: 1fr .72fr; }
+}
+
+@media (max-width: 640px) {
+  .redesign-page .saas-hero { padding: 78px 0 20px; }
+  .redesign-page .hero-layout { gap: 17px; }
+  .redesign-page .hero-copy h1 { max-width: 355px; font-size: clamp(2.25rem, 11vw, 3.1rem); }
+  .redesign-page .hero-lede { max-width: 340px; font-size: 13px; }
+  .redesign-page .hero-actions { margin-top: 18px; }
+  .redesign-page .hero-proof { display: flex; gap: 7px 12px; margin-top: 14px; font-size: 9px; }
+  .redesign-page .hero-product { min-height: 0; padding: 0 0 27px; }
+  .redesign-page .hero-product::after { right: 12px; bottom: 0; font-size: 6px; }
+  .redesign-page .hero-product .bee-card { right: 5px; bottom: 2px; }
+  .redesign-page .metrics-strip { margin-top: 0; border-radius: 0; }
+  .redesign-page .metrics-intro, .redesign-page .metric { min-height: 102px; padding: 18px 14px; }
+  .redesign-page .problem-section { padding: 26px 0 28px; }
+  .redesign-page .problem-grid { gap: 12px; }
+  .redesign-page .problem-grid h2 { font-size: 1.72rem; }
+  .redesign-page .problem-grid p { font-size: 12px; }
+  .redesign-page .platform-demo-section { padding: 48px 0 58px; }
+  .redesign-page .platform-demo-heading h2 { font-size: 2rem; }
+  .redesign-page .platform-demo-heading p { font-size: 12px; }
+  .redesign-page .platform-demo-stage { min-height: 438px; padding: 18px 10px; }
+  .redesign-page .platform-demo-stage::after { right: 12px; bottom: 12px; max-width: 220px; font-size: 6px; line-height: 1.4; }
+  .redesign-page .journey-section { padding: 58px 0 64px; }
+  .redesign-page .journey-heading h2 { font-size: 2rem; }
+  .redesign-page .journey-heading p { font-size: 12px; }
+  .redesign-page .journey-panel { display: block; padding: 13px; }
+  .redesign-page .journey-copy { padding-top: 20px; }
+  .redesign-page .capabilities-section { padding: 58px 0 64px; }
+  .redesign-page .capabilities-heading h2 { font-size: 2rem; }
+  .redesign-page .bee-section { padding: 62px 0; }
+  .redesign-page .bee-section-grid { gap: 24px; }
+  .redesign-page .authority-section { padding: 52px 0; }
+  .redesign-page .final-cta { padding: 62px 0; }
+}
