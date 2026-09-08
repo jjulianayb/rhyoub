@@ -102,6 +102,11 @@ const MetricCount = ({ target, prefix = "", suffix = "", label }: { target: numb
     const observer = new IntersectionObserver(([entry]) => {
       if (!entry.isIntersecting || hasAnimated.current) return;
       hasAnimated.current = true;
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        setValue(target);
+        observer.disconnect();
+        return;
+      }
       const startedAt = performance.now();
       const duration = 900;
       const tick = (now: number) => {
