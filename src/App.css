@@ -467,8 +467,9 @@
 }
 
 @media (min-width: 981px) {
-  .redesign-page .hero-layout { grid-template-columns: minmax(410px, .88fr) minmax(0, 1.12fr); }
-  .redesign-page .hero-copy h1 { max-width: 540px; font-size: clamp(2.35rem, 3.05vw, 3.2rem); line-height: .98; }
+  .redesign-page .hero-layout { grid-template-columns: minmax(450px, 1.02fr) minmax(0, 1.18fr); }
+  .redesign-page .hero-copy h1 { max-width: 560px; font-size: clamp(2.45rem, 2.85vw, 3rem); line-height: .99; }
+  .redesign-page .hero-product { margin-left: -18px; }
 }
 
 @media (max-width: 640px) {
