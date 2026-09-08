@@ -117,7 +117,7 @@ const MetricCount = ({ target, prefix = "", suffix = "", label }: { target: numb
     return () => observer.disconnect();
   }, [target]);
 
-  return <div ref={ref} className="metric"><strong>{prefix}{value}{suffix}</strong><span>{label}</span><i className="metric-trend" aria-hidden="true" /></div>;
+  return <div ref={ref} className={`metric${value === target ? " is-complete" : ""}`}><strong>{prefix}{value}{suffix}</strong><span>{label}</span><i className="metric-trend" aria-hidden="true" /></div>;
 };
 
 const ProductScreen = ({ compact = false }: { compact?: boolean }) => (
