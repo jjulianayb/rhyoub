@@ -505,3 +505,85 @@
   .redesign-page .authority-section { padding: 52px 0; }
   .redesign-page .final-cta { padding: 62px 0; }
 }
+
+/* QA mobile final: compact data rail, single-column Bee, richer demo chart and tighter CTA. */
+.metric { position: relative; overflow: hidden; }
+.metric-trend { position: absolute; right: 16px; bottom: 18px; width: 42px; height: 18px; opacity: .22; background: linear-gradient(145deg, transparent 44%, #8f7cf4 46% 52%, transparent 54%) 0 100% / 14px 14px repeat-x; transform: translateY(5px); }
+.metric-trend::after { content: ""; position: absolute; right: 0; bottom: 7px; width: 7px; height: 7px; border-top: 2px solid #8f7cf4; border-right: 2px solid #8f7cf4; transform: rotate(45deg); }
+.metric strong { transition: color .3s ease, transform .3s ease; }
+.metric:has(strong) strong { animation: metric-highlight .9s ease both; }
+.journey-demo-label { display: flex; justify-content: space-between; gap: 8px; margin-top: 15px; color: #9b94ab; font-size: 7px; font-weight: 800; letter-spacing: .1em; }
+.journey-demo-label span { color: #6a9b8d; letter-spacing: .02em; text-transform: none; }
+.journey-mini-kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; margin-top: 9px; }
+.journey-mini-kpis span { padding: 7px 5px; border: 1px solid #eeeaf7; border-radius: 7px; color: #8e879e; font-size: 7px; line-height: 1.25; }
+.journey-mini-kpis strong { display: block; margin-bottom: 2px; color: #3e365b; font-size: 13px; }
+.journey-skill-chart { display: grid; gap: 7px; margin-top: 12px; }
+.journey-skill-row { display: grid; grid-template-columns: 78px 1fr 23px 42px; align-items: center; gap: 6px; color: #7f7791; font-size: 7px; }
+.journey-skill-row.is-priority .journey-skill-name { color: #5e45d2; font-weight: 800; }
+.journey-skill-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.journey-skill-track { height: 7px; overflow: hidden; border-radius: 5px; background: #eeebf7; }
+.journey-skill-track i { display: block; height: 100%; border-radius: inherit; background: #8970ec; transition: width .45s ease, background .35s ease; }
+.journey-skill-row.tone-mint .journey-skill-track i { background: #8bc9b3; }
+.journey-skill-row.tone-amber .journey-skill-track i { background: #d8b56c; }
+.journey-skill-row.tone-stable .journey-skill-track i { background: #c5bddc; }
+.journey-skill-row strong { color: #4a4164; font-size: 8px; }
+.journey-skill-row em { color: #79a993; font-size: 7px; font-style: normal; text-align: right; }
+.journey-skill-row.tone-amber em { color: #b28b43; }
+@keyframes metric-highlight { from { opacity: .35; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (max-width: 640px) {
+  .redesign-page .metrics-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0; padding: 0; margin: 0; overflow: visible; }
+  .redesign-page .metrics-intro { grid-column: 1 / -1; min-height: 74px; padding: 14px 16px 10px; border-right: 0; }
+  .redesign-page .metrics-intro span { margin-bottom: 4px; font-size: 8px; }
+  .redesign-page .metrics-intro strong { font-size: 16px; }
+  .redesign-page .metrics-intro strong br { display: none; }
+  .redesign-page .metric { min-width: 0; min-height: 76px; padding: 13px 16px; border-right: 1px solid rgba(255,255,255,.13); border-top: 1px solid rgba(255,255,255,.1); }
+  .redesign-page .metric:nth-of-type(even) { border-right: 0; }
+  .redesign-page .metric strong { font-size: 19px; }
+  .redesign-page .metric span { max-width: 110px; margin-top: 3px; font-size: 8px; }
+  .redesign-page .metric-trend { right: 11px; bottom: 11px; transform: scale(.78); transform-origin: right bottom; }
+  .redesign-page .problem-section { padding: 21px 0 23px; }
+  .redesign-page .problem-grid { gap: 9px; }
+  .redesign-page .problem-grid h2 { max-width: 330px; margin-top: 6px; font-size: 1.55rem; line-height: 1.04; }
+  .redesign-page .problem-grid p { max-width: 350px; font-size: 11px; line-height: 1.4; }
+  .redesign-page .problem-grid .text-link { margin-top: 8px; font-size: 11px; }
+  .redesign-page .journey-dashboard { width: 100%; box-sizing: border-box; }
+  .redesign-page .journey-dashboard-title strong { font-size: 18px; }
+  .redesign-page .journey-bars { display: none; }
+  .redesign-page .journey-mini-kpis { gap: 4px; }
+  .redesign-page .journey-skill-row { grid-template-columns: 73px 1fr 21px 38px; gap: 5px; font-size: 6px; }
+  .redesign-page .journey-skill-chart { gap: 6px; }
+  .redesign-page .journey-demo-label { margin-top: 11px; font-size: 6px; }
+  .redesign-page .journey-mini-kpis span { font-size: 6px; }
+  .redesign-page .journey-mini-kpis strong { font-size: 12px; }
+  .redesign-page .journey-bee-note { width: 100%; box-sizing: border-box; }
+  .redesign-page .journey-bee-note strong { font-size: 9px; }
+  .redesign-page .bee-section { padding: 48px 0 52px; }
+  .redesign-page .bee-section-grid { display: flex; flex-direction: column; gap: 18px; }
+  .redesign-page .bee-copy { display: contents; }
+  .redesign-page .bee-copy .section-kicker { order: 1; }
+  .redesign-page .bee-copy h2 { order: 2; max-width: 350px; margin: 7px 0 0; font-size: 2rem; line-height: 1.02; }
+  .redesign-page .bee-copy > p { order: 3; max-width: 350px; margin: 10px 0 0; font-size: 12px; line-height: 1.45; }
+  .redesign-page .bee-product-card { order: 4; width: 100%; box-sizing: border-box; padding: 15px; }
+  .redesign-page .bee-copy ul { order: 5; display: grid; gap: 8px; margin: 0; padding: 0; font-size: 10px; }
+  .redesign-page .bee-product-header { gap: 9px; }
+  .redesign-page .bee-product-header strong { font-size: 13px; }
+  .redesign-page .bee-section .bee-avatar-large { width: 52px; height: 70px; border-radius: 13px; }
+  .redesign-page .bee-flow { margin: 17px 0; font-size: 7px; }
+  .redesign-page .bee-recommendation { padding: 10px; }
+  .redesign-page .bee-recommendation .bee-avatar { width: 38px; height: 52px; }
+  .redesign-page .bee-recommendation strong { font-size: 10px; }
+  .redesign-page .final-cta { padding: 43px 0 47px; }
+  .redesign-page .final-cta-inner { gap: 17px; }
+  .redesign-page .final-cta h2 { margin-top: 8px; font-size: 2.05rem; line-height: 1.02; }
+  .redesign-page .final-cta p { margin-bottom: 17px; font-size: 12px; line-height: 1.45; }
+  .redesign-page .final-cta-actions { gap: 7px; }
+  .redesign-page .final-bee-visual { min-height: 148px; margin-top: 0; }
+  .redesign-page .final-bee-card { width: 100%; box-sizing: border-box; padding: 14px; border-radius: 16px; }
+  .redesign-page .final-bee-card strong { font-size: 15px; line-height: 1.12; }
+  .redesign-page .final-bee-card .bee-avatar.large { width: 48px; height: 64px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .metric strong, .metric-trend, .journey-skill-track i { animation: none; transition: none; }
+}

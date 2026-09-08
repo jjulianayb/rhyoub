@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import beeAvatar from "@/assets/bee-avatar.png";
 import {
@@ -86,6 +86,35 @@ type ProductView = "desktop" | "mobile";
 const BeeAvatar = ({ className = "" }: { className?: string }) => (
   <img className={`bee-avatar-image ${className}`} src={beeAvatar} alt="Bee, IA Mentora" />
 );
+
+const MetricCount = ({ target, prefix = "", suffix = "", label }: { target: number; prefix?: string; suffix?: string; label: string }) => {
+  const [value, setValue] = useState(0);
+  const ref = useRef<HTMLDivElement>(null);
+  const hasAnimated = useRef(false);
+
+  useEffect(() => {
+    const node = ref.current;
+    if (!node || typeof IntersectionObserver === "undefined") return;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting || hasAnimated.current) return;
+      hasAnimated.current = true;
+      const startedAt = performance.now();
+      const duration = 900;
+      const tick = (now: number) => {
+        const progress = Math.min((now - startedAt) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        setValue(Math.round(target * eased));
+        if (progress < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+      observer.disconnect();
+    }, { threshold: 0.35 });
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [target]);
+
+  return <div ref={ref} className="metric"><strong>{prefix}{value.toLocaleString("pt-BR")}{suffix}</strong><span>{label}</span><i className="metric-trend" aria-hidden="true" /></div>;
+};
 
 const ProductScreen = ({ compact = false }: { compact?: boolean }) => (
   <div className={`product-browser${compact ? " product-browser-compact" : ""}`} aria-label="Prévia visual da plataforma youB">
@@ -184,6 +213,44 @@ const journeyLayers = [
   { title: "Próxima ação", text: "Uma direção para apoiar a conversa.", icon: ArrowRight },
 ];
 
+const journeyAnalytics = [
+  [
+    { label: "Comunicação", value: 78, change: "+12%", tone: "mint" },
+    { label: "Liderança", value: 64, change: "+5%", tone: "lilac" },
+    { label: "Feedback", value: 49, change: "atenção", tone: "amber" },
+    { label: "Colaboração", value: 71, change: "+9%", tone: "mint" },
+    { label: "Desenvolvimento", value: 83, change: "estável", tone: "stable" },
+  ],
+  [
+    { label: "Comunicação", value: 81, change: "+15%", tone: "mint" },
+    { label: "Liderança", value: 68, change: "+8%", tone: "mint" },
+    { label: "Feedback", value: 54, change: "+6%", tone: "lilac" },
+    { label: "Colaboração", value: 74, change: "+11%", tone: "mint" },
+    { label: "Desenvolvimento", value: 83, change: "estável", tone: "stable" },
+  ],
+  [
+    { label: "Comunicação", value: 84, change: "+18%", tone: "mint" },
+    { label: "Liderança", value: 72, change: "+12%", tone: "mint" },
+    { label: "Feedback", value: 49, change: "atenção", tone: "amber" },
+    { label: "Colaboração", value: 76, change: "+13%", tone: "mint" },
+    { label: "Desenvolvimento", value: 86, change: "+7%", tone: "lilac" },
+  ],
+  [
+    { label: "Comunicação", value: 86, change: "+20%", tone: "mint" },
+    { label: "Liderança", value: 76, change: "+14%", tone: "mint" },
+    { label: "Feedback", value: 55, change: "+6%", tone: "lilac" },
+    { label: "Colaboração", value: 79, change: "+16%", tone: "mint" },
+    { label: "Desenvolvimento", value: 88, change: "+9%", tone: "lilac" },
+  ],
+  [
+    { label: "Comunicação", value: 88, change: "+22%", tone: "mint" },
+    { label: "Liderança", value: 79, change: "+17%", tone: "mint" },
+    { label: "Feedback", value: 61, change: "+12%", tone: "mint" },
+    { label: "Colaboração", value: 82, change: "+19%", tone: "mint" },
+    { label: "Desenvolvimento", value: 90, change: "+11%", tone: "lilac" },
+  ],
+];
+
 const InteractiveJourney = () => {
   const [activeStage, setActiveStage] = useState(0);
   const [activeLayer, setActiveLayer] = useState(0);
@@ -201,7 +268,7 @@ const InteractiveJourney = () => {
         <div className="journey-panel" id="journey-panel" role="tabpanel" aria-live="polite">
           <div className="journey-visual">
             <div className="journey-halo" />
-            <div className="journey-dashboard"><div className="journey-dashboard-top"><span>youB <small>visão integrada</small></span><span className="journey-status">● atualizado</span></div><div className="journey-dashboard-title"><span>{stage.kicker}</span><strong>{stage.label}</strong><p>{stage.detail}</p></div><div className="journey-bars"><span style={{ height: `${38 + activeStage * 6}%` }} /><span style={{ height: `${58 + activeStage * 5}%` }} /><span style={{ height: `${44 + activeStage * 8}%` }} /><span style={{ height: `${72 + activeStage * 4}%` }} /><span style={{ height: `${52 + activeStage * 7}%` }} /></div><div className="journey-dashboard-footer"><span>leitura organizada</span><strong>{activeStage === 4 ? "continuidade" : "em acompanhamento"}</strong></div></div>
+            <div className="journey-dashboard"><div className="journey-dashboard-top"><span>youB <small>visão integrada</small></span><span className="journey-status">● atualizado</span></div><div className="journey-dashboard-title"><span>{stage.kicker}</span><strong>{stage.label}</strong><p>{stage.detail}</p></div><div className="journey-analytics"><div className="journey-demo-label">DADOS DEMONSTRATIVOS <span>Contexto atualizado</span></div><div className="journey-mini-kpis"><span><strong>3</strong> habilidades evoluíram</span><span><strong>1</strong> ponto pede atenção</span><span><strong>1</strong> indicador estável</span></div><div className="journey-skill-chart">{journeyAnalytics[activeStage].map((skill, index) => <div className={`journey-skill-row tone-${skill.tone}${index === activeStage ? " is-priority" : ""}`} key={skill.label}><span className="journey-skill-name">{skill.label}</span><span className="journey-skill-track"><i style={{ width: `${skill.value}%` }} /></span><strong>{skill.value}</strong><em>{skill.change}</em></div>)}</div></div><div className="journey-dashboard-footer"><span>leitura organizada</span><strong>{activeStage === 4 ? "continuidade" : "em acompanhamento"}</strong></div></div>
             {journeyLayers.map((layer, index) => { const Icon = layer.icon; return <button key={layer.title} type="button" className={`journey-float journey-float-${index + 1}${activeLayer === index ? " is-active" : ""}`} onClick={() => setActiveLayer(index)}><Icon size={14} /><span>{layer.title}</span></button>; })}
             <div className="journey-bee-note"><div className="bee-avatar bee-avatar-journey"><BeeAvatar /></div><div><span className="mini-label">BEE · IA MENTORA</span><strong>{stage.message}</strong></div></div>
           </div>
@@ -250,7 +317,7 @@ const VisualRedesign = () => {
         </div>
       </section>
 
-      <section className="metrics-strip" aria-label="Indicadores institucionais youB"><div className="container metrics-grid"><div className="metrics-intro"><span>Experiência que vira produto</span><strong>Impacto real<br /><em>nas organizações.</em></strong></div><div className="metric"><strong>+11 mil</strong><span>profissionais impactados</span></div><div className="metric"><strong>+50</strong><span>empresas atendidas</span></div><div className="metric"><strong>desde 2016</strong><span>atuação em DHO</span></div><div className="metric"><strong>5 frentes</strong><span>integradas em desenvolvimento</span></div></div></section>
+      <section className="metrics-strip" aria-label="Indicadores institucionais youB"><div className="container metrics-grid"><div className="metrics-intro"><span>Experiência que vira produto</span><strong>Impacto real<br /><em>nas organizações.</em></strong></div><MetricCount target={11} prefix="+" suffix=" mil" label="profissionais impactados" /><MetricCount target={50} prefix="+" label="empresas atendidas" /><MetricCount target={2016} prefix="desde " label="atuação em DHO" /><MetricCount target={5} label="frentes integradas em desenvolvimento" /></div></section>
 
       <section className="problem-section" aria-labelledby="problem-title"><div className="container problem-grid"><div><span className="section-kicker">O DESAFIO DO RH</span><h2 id="problem-title">Quando o contexto se perde, o desenvolvimento perde continuidade.</h2></div><div><p>A youB organiza sinais, conversas e planos de desenvolvimento para que RH e lideranças avancem com uma visão comum.</p><Link to="/plataforma" className="text-link">Conheça a plataforma <ArrowRight size={15} /></Link></div></div></section>
 
