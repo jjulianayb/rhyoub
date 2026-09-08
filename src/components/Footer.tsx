@@ -1,6 +1,6 @@
 import { ArrowUpRight, Instagram, Linkedin, Mail, MessageCircle } from "lucide-react";
 
-const WHATSAPP_LINK = "https://wa.me/5521991417327?text=Olá,%20vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20sessão%20estratégica.";
+const WHATSAPP_LINK = "https://wa.me/5521991417327?text=Olá,%20vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20demonstração.";
 
 const Footer = () => (
   <footer className="saas-footer" id="contato">

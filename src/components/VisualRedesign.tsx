@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useState } from "react";
 import { Link } from "react-router-dom";
 import beeAvatar from "@/assets/bee-avatar.png";
 import {
@@ -10,7 +10,6 @@ import {
   Layers3,
   MessageCircle,
   ShieldCheck,
-  Sparkles,
   Users,
   Workflow,
   X,
@@ -21,17 +20,39 @@ const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponen
 
 const clients = ["ArcelorMittal", "Gerdau", "Orient Life", "Grupo Sartori", "FCV"];
 
-const capabilities = [
-  { icon: Users, title: "Diagnóstico organizacional", text: "Leituras organizadas para apoiar decisões de pessoas e estrutura." },
-  { icon: Users, title: "Perfil, 360 e DISC", text: "Visões de perfil e avaliações para ampliar o contexto de desenvolvimento." },
-  { icon: Layers3, title: "PDI e desenvolvimento", text: "Planos e próximos passos para acompanhar cada jornada." },
-  { icon: BarChart3, title: "Liderança e performance", text: "Acompanhamento de lideranças e conversas orientadas à evolução." },
-  { icon: Workflow, title: "Aprendizagem e trilhas", text: "Experiências de aprendizagem conectadas ao desenvolvimento." },
-  { icon: Layers3, title: "Sucessão e 9-Box", text: "Visões para apoiar conversas de sucessão e desenvolvimento." },
-  { icon: Brain, title: "IA Mentora Bee", text: "Inteligência para organizar contexto e orientar a próxima ação." },
-  { icon: BarChart3, title: "Impacto e ROI", text: "Indicadores para acompanhar impacto e evolução." },
-  { icon: ShieldCheck, title: "Integrações e governança", text: "Acesso, contexto e supervisão para uma operação responsável." },
+const capabilityGroups = [
+  {
+    title: "Leitura de pessoas",
+    items: [
+      { icon: Users, title: "Diagnóstico organizacional", text: "Leituras organizadas para apoiar decisões de pessoas e estrutura." },
+      { icon: Users, title: "Perfil, 360 e DISC", text: "Visões de perfil e avaliações para ampliar o contexto de desenvolvimento." },
+    ],
+  },
+  {
+    title: "Desenvolvimento",
+    items: [
+      { icon: Layers3, title: "PDI e desenvolvimento", text: "Planos e próximos passos para acompanhar cada jornada." },
+      { icon: BarChart3, title: "Liderança e performance", text: "Acompanhamento de lideranças e conversas orientadas à evolução." },
+      { icon: Workflow, title: "Aprendizagem e trilhas", text: "Experiências de aprendizagem conectadas ao desenvolvimento." },
+    ],
+  },
+  {
+    title: "Decisões estratégicas",
+    items: [
+      { icon: Layers3, title: "Sucessão e 9-Box", text: "Visões para apoiar conversas de sucessão e desenvolvimento." },
+      { icon: BarChart3, title: "Impacto e ROI", text: "Indicadores para acompanhar impacto e evolução." },
+    ],
+  },
+  {
+    title: "Inteligência e operação",
+    items: [
+      { icon: Brain, title: "IA Mentora Bee", text: "Inteligência para organizar contexto e orientar a próxima ação." },
+      { icon: ShieldCheck, title: "Integrações e governança", text: "Acesso, contexto e supervisão para uma operação responsável." },
+    ],
+  },
 ];
+
+const capabilities = capabilityGroups.flatMap((group) => group.items);
 
 const media = [
   {
@@ -127,11 +148,7 @@ const MobileProductScreen = () => (
 );
 
 const PlatformDemo = () => {
-  const [view, setView] = useState<ProductView>("desktop");
-
-  useEffect(() => {
-    setView(window.matchMedia("(max-width: 767px)").matches ? "mobile" : "desktop");
-  }, []);
+  const [view, setView] = useState<ProductView>(() => window.matchMedia("(max-width: 767px)").matches ? "mobile" : "desktop");
 
   return (
     <section className="platform-demo-section" id="demonstracao-plataforma" aria-labelledby="demo-title">
@@ -152,8 +169,51 @@ const PlatformDemo = () => {
   );
 };
 
+const journeyStages = [
+  { label: "Dados", kicker: "SINAIS DISPERSOS", message: "Eu organizo os sinais disponíveis.", detail: "Dados de pessoas, conversas e avaliações entram em uma mesma leitura." },
+  { label: "Contexto", kicker: "LEITURA ORGANIZADA", message: "Aqui, os dados começam a fazer sentido.", detail: "A plataforma conecta cada informação à jornada e ao perfil certo." },
+  { label: "Insight", kicker: "PONTO DE ATENÇÃO", message: "Identifico o que merece atenção.", detail: "A leitura evidencia os sinais que ajudam a orientar a conversa." },
+  { label: "Recomendação", kicker: "PRÓXIMO PASSO", message: "A leitura se transforma em próximo passo.", detail: "A Bee organiza uma direção para apoiar a decisão humana." },
+  { label: "Ação", kicker: "CONTINUIDADE", message: "A decisão ganha direção e continuidade.", detail: "O desenvolvimento avança com acompanhamento e contexto." },
+];
+
+const journeyLayers = [
+  { title: "Dados de pessoas", text: "Estrutura e perfis para começar a leitura.", icon: Users },
+  { title: "Conversas e feedbacks", text: "Sinais humanos conectados ao desenvolvimento.", icon: MessageCircle },
+  { title: "Contexto com IA", text: "A Bee organiza o que merece atenção.", icon: Brain },
+  { title: "Próxima ação", text: "Uma direção para apoiar a conversa.", icon: ArrowRight },
+];
+
+const InteractiveJourney = () => {
+  const [activeStage, setActiveStage] = useState(0);
+  const [activeLayer, setActiveLayer] = useState(0);
+  const stage = journeyStages[activeStage];
+  const LayerIcon = journeyLayers[activeLayer].icon;
+
+  return (
+    <section className="journey-section" id="jornada" aria-labelledby="journey-title">
+      <div className="container">
+        <div className="journey-heading"><span className="section-kicker">COMO FUNCIONA</span><h2 id="journey-title">Como a inteligência da youB acompanha cada etapa.</h2><p>A Bee conecta dados, contexto e decisão em uma jornada contínua de desenvolvimento.</p></div>
+        <div className="journey-flow" role="tablist" aria-label="Etapas da inteligência da youB">
+          <div className="journey-line"><span style={{ width: `${activeStage * 25}%` }} /></div>
+          {journeyStages.map((item, index) => <button key={item.label} type="button" role="tab" aria-selected={activeStage === index} aria-controls="journey-panel" tabIndex={activeStage === index ? 0 : -1} className={activeStage === index ? "is-active" : ""} onClick={() => setActiveStage(index)}><i>{index + 1}</i><span>{item.label}</span></button>)}
+        </div>
+        <div className="journey-panel" id="journey-panel" role="tabpanel" aria-live="polite">
+          <div className="journey-visual">
+            <div className="journey-halo" />
+            <div className="journey-dashboard"><div className="journey-dashboard-top"><span>youB <small>visão integrada</small></span><span className="journey-status">● atualizado</span></div><div className="journey-dashboard-title"><span>{stage.kicker}</span><strong>{stage.label}</strong><p>{stage.detail}</p></div><div className="journey-bars"><span style={{ height: `${38 + activeStage * 6}%` }} /><span style={{ height: `${58 + activeStage * 5}%` }} /><span style={{ height: `${44 + activeStage * 8}%` }} /><span style={{ height: `${72 + activeStage * 4}%` }} /><span style={{ height: `${52 + activeStage * 7}%` }} /></div><div className="journey-dashboard-footer"><span>leitura organizada</span><strong>{activeStage === 4 ? "continuidade" : "em acompanhamento"}</strong></div></div>
+            {journeyLayers.map((layer, index) => { const Icon = layer.icon; return <button key={layer.title} type="button" className={`journey-float journey-float-${index + 1}${activeLayer === index ? " is-active" : ""}`} onClick={() => setActiveLayer(index)}><Icon size={14} /><span>{layer.title}</span></button>; })}
+            <div className="journey-bee-note"><div className="bee-avatar bee-avatar-journey"><BeeAvatar /></div><div><span className="mini-label">BEE · IA MENTORA</span><strong>{stage.message}</strong></div></div>
+          </div>
+          <div className="journey-copy"><span className="section-kicker">{stage.kicker}</span><h3>{stage.label}</h3><p>{stage.detail}</p><div className="journey-layer-detail"><div className="feature-icon"><LayerIcon size={17} /></div><div><strong>{journeyLayers[activeLayer].title}</strong><span>{journeyLayers[activeLayer].text}</span></div></div><div className="journey-next"><span>Etapa {activeStage + 1} de {journeyStages.length}</span><button type="button" onClick={() => setActiveStage((activeStage + 1) % journeyStages.length)}>Avançar etapa <ArrowRight size={14} /></button></div></div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
 const VisualRedesign = () => {
-  const [form, setForm] = useState<FormState>({ name: "", email: "", company: "", role: "", interest: "Plataforma" });
+  const [form, setForm = useState<FormState>({ name: "", email: "", company: "", role: "", interest: "Plataforma" });
   const [submitted, setSubmitted] = useState(false);
   const [activeCapability, setActiveCapability] = useState<(typeof capabilities)[number] | null>(null);
 
@@ -196,15 +256,17 @@ const VisualRedesign = () => {
 
       <PlatformDemo />
 
-      <section className="capabilities-section" id="capacidades" aria-labelledby="capabilities-title"><div className="container"><div className="section-heading capabilities-heading"><span className="section-kicker">CAPACIDADES DO PRODUTO</span><h2 id="capabilities-title">Tudo o que o desenvolvimento precisa para ganhar contexto.</h2><p>Uma base integrada para acompanhar pessoas, conversas, aprendizagem e decisões.</p></div><div className="feature-grid">{capabilities.map((capability, index) => { const Icon = capability.icon; const isActive = activeCapability?.title === capability.title; return <button className={`feature-card${isActive ? " is-active" : ""}`} type="button" key={capability.title} aria-expanded={isActive} onClick={() => setActiveCapability(isActive ? null : capability)} style={{ animationDelay: `${index * 55}ms` }}><div className="feature-icon">{capability.title === "IA Mentora Bee" ? <BeeAvatar /> : <Icon size={19} />}</div><h3>{capability.title}</h3><p>{capability.text}</p><span>{isActive ? "Fechar detalhe" : "Ver detalhe"}<ChevronRight size={14} /></span></button>; })}</div>{activeCapability && <div className="feature-dialog-backdrop" role="presentation" onClick={() => setActiveCapability(null)}><div className="feature-dialog" role="dialog" aria-modal="true" aria-labelledby="feature-dialog-title" onClick={(event) => event.stopPropagation()}><button className="feature-dialog-close" type="button" aria-label="Fechar detalhe" onClick={() => setActiveCapability(null)}><X size={18} /></button><div className="feature-icon">{activeCapability.title === "IA Mentora Bee" ? <BeeAvatar /> : ActiveCapabilityIcon && <ActiveCapabilityIcon size={19} />}</div><span className="section-kicker">Na plataforma youB</span><h3 id="feature-dialog-title">{activeCapability.title}</h3><p>{activeCapability.text}</p><Link to="/plataforma" className="button button-dark" onClick={() => setActiveCapability(null)}>Conhecer a plataforma <ArrowRight size={16} /></Link></div></div>}</div></section>
+      <InteractiveJourney />
+
+      <section className="capabilities-section" id="capacidades" aria-labelledby="capabilities-title"><div className="container"><div className="section-heading capabilities-heading"><span className="section-kicker">CAPACIDADES DO ECOSSISTEMA</span><h2 id="capabilities-title">Tudo se conecta para desenvolver pessoas.</h2><p>Uma arquitetura integrada para acompanhar pessoas, conversas, aprendizagem e decisões.</p></div><div className="capability-ecosystem-grid">{capabilityGroups.map((group, groupIndex) => <details className="capability-group" key={group.title} open={groupIndex === 0}><summary><span className="capability-group-index">0{groupIndex + 1}</span><span><strong>{group.title}</strong><small>{group.items.length} camadas conectadas</small></span><ChevronRight size={17} /></summary><div className="capability-group-items">{group.items.map((capability, index) => { const Icon = capability.icon; const isActive = activeCapability?.title === capability.title; return <button className={`feature-card${isActive ? " is-active" : ""}`} type="button" key={capability.title} aria-expanded={isActive} onClick={() => setActiveCapability(isActive ? null : capability)} style={{ animationDelay: `${(groupIndex + index) * 55}ms` }}><div className="feature-icon">{capability.title === "IA Mentora Bee" ? <BeeAvatar /> : <Icon size={19} />}</div><span><strong>{capability.title}</strong><small>{capability.text}</small></span><ArrowRight size={15} /></button>; })}</div></details>)}</div>{activeCapability && <div className="feature-dialog-backdrop" role="presentation" onClick={() => setActiveCapability(null)}><div className="feature-dialog" role="dialog" aria-modal="true" aria-labelledby="feature-dialog-title" onClick={(event) => event.stopPropagation()}><button className="feature-dialog-close" type="button" aria-label="Fechar detalhe" onClick={() => setActiveCapability(null)}><X size={18} /></button><div className="feature-icon">{activeCapability.title === "IA Mentora Bee" ? <BeeAvatar /> : ActiveCapabilityIcon && <ActiveCapabilityIcon size={19} />}</div><span className="section-kicker">Na plataforma youB</span><h3 id="feature-dialog-title">{activeCapability.title}</h3><p>{activeCapability.text}</p><Link to="/plataforma" className="button button-dark" onClick={() => setActiveCapability(null)}>Conhecer a plataforma <ArrowRight size={16} /></Link></div></div>}</div></section>
 
       <section className="bee-section" aria-labelledby="bee-title"><div className="container bee-section-grid"><div className="bee-product-card"><div className="bee-product-header"><div className="bee-avatar bee-avatar-large"><BeeAvatar /></div><div><span className="section-kicker">BEE · IA MENTORA</span><strong>Contexto que vira recomendação.</strong></div></div><div className="bee-flow" aria-label="Fluxo da Bee"><span>Dados</span><i>→</i><span>Contexto</span><i>→</i><span>Insight</span><i>→</i><span>Recomendação</span><i>→</i><span>Ação</span></div><div className="bee-recommendation"><BeeAvatar /><div><small>RECOMENDAÇÃO DA BEE</small><strong>Uma próxima conversa, no contexto certo.</strong><p>IA para apoiar a decisão humana no desenvolvimento contínuo.</p></div></div></div><div className="bee-copy"><span className="section-kicker">INTELIGÊNCIA DENTRO DO PRODUTO</span><h2 id="bee-title">A Bee ajuda a transformar leitura em próxima ação.</h2><p>A Bee organiza os sinais disponíveis na plataforma e orienta o próximo passo para líderes, RH e colaboradores.</p><ul><li><CheckCircle2 size={17} /> Lê o contexto da jornada.</li><li><CheckCircle2 size={17} /> Organiza o insight principal.</li><li><CheckCircle2 size={17} /> Recomenda uma ação com supervisão humana.</li></ul></div></div></section>
 
-      <section className="authority-section"><div className="container"><div className="authority-heading"><span className="section-kicker brand-kicker">ECOSSISTEMA youB</span><h2>Empresas que já caminharam com a youB.</h2><p>Experiência aplicada para contextos complexos de pessoas, liderança e cultura.</p></div><div className="client-lane" aria-label="Empresas que já caminharam com a youB"><div className="client-lane-track">{[...clients, ...clients].map((client, index) => <span key={`${client}-${index}`}>{client}</span>)}</div></div></div></section>
+      <section className="authority-section"><div className="container"><div className="authority-heading"><span className="section-kicker brand-kicker">EMPRESAS QUE CONFIAM NA youB</span><h2>Empresas que confiam na youB.</h2><p>Experiência aplicada para contextos complexos de pessoas, liderança e cultura.</p></div><div className="client-lane" aria-label="Empresas que já caminharam com a youB"><div className="client-lane-track">{[...clients, ...clients].map((client, index) => <span key={`${client}-${index}`}>{client}</span>)}</div></div></div></section>
 
       <section className="media-strip"><div className="container media-strip-inner"><div><span className="section-kicker brand-kicker">youB NA MÍDIA</span><strong>Ideias que ampliam a conversa sobre pessoas e futuro.</strong></div><div className="media-links">{media.map((item) => <a key={item.href} href={item.href} target="_blank" rel="noopener noreferrer">{item.source}<ArrowRight size={13} /></a>)}</div></div></section>
 
-      <section className="final-cta"><div className="container final-cta-inner"><div><span className="section-kicker">PRÓXIMO PASSO</span><h2>Veja a <em>youB</em> funcionando na sua empresa.</h2><p>Uma conversa para entender seu contexto e mostrar como a plataforma pode apoiar suas decisões de pessoas.</p><a className="button button-primary" href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">Agendar demonstração <ArrowRight size={16} /></a></div><div className="final-bee-visual"><div className="final-glow" /><div className="final-bee-card"><div className="bee-avatar large"><BeeAvatar /></div><span className="mini-label">BEE · IA MENTORA</span><strong>A evolução das pessoas começa com uma boa conversa.</strong><span className="bee-pulse" /></div></div></div></section>
+      <section className="final-cta"><div className="container final-cta-inner"><div><span className="section-kicker">PRÓXIMO PASSO</span><h2>Veja a <em>youB</em> funcionando na sua empresa.</h2><p>Uma conversa para entender seu contexto e mostrar como a plataforma pode apoiar suas decisões de pessoas.</p><div className="final-cta-actions"><a className="button button-primary" href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">Agendar demonstração <ArrowRight size={16} /></a><a className="button button-secondary" href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">Falar no WhatsApp <MessageCircle size={15} /></a></div></div><div className="final-bee-visual"><div className="final-glow" /><div className="final-bee-card"><div className="bee-avatar large"><BeeAvatar /></div><span className="mini-label">BEE · IA MENTORA</span><strong>A evolução das pessoas começa com uma boa conversa.</strong><span className="bee-pulse" /></div></div></div></section>
 
       <section className="contact-section" id="contato"><div className="container contact-layout"><div><span className="section-kicker">DEMONSTRAÇÃO</span><h2>Uma conversa orientada ao seu desafio.</h2><p>Conte rapidamente sobre o seu contexto. A equipe youB apresenta a plataforma e indica o formato mais adequado para a sua realidade.</p><div className="contact-points"><span><MessageCircle size={17} /> Atendimento pelo WhatsApp oficial</span><span><ShieldCheck size={17} /> Seus dados usados apenas para este contato</span></div></div><div className="contact-card">{submitted ? <div className="form-success" role="status"><div className="success-icon"><MessageCircle size={22} /></div><h3>WhatsApp preparado</h3><p>A mensagem foi aberta com as suas informações. Envie-a para concluir o contato com a equipe youB.</p><button type="button" onClick={() => setSubmitted(false)}>Enviar outro pedido</button></div> : <form onSubmit={handleSubmit}><h3>Agendar demonstração</h3><p className="form-intro">Fale com a equipe youB.</p><div className="form-grid"><label>Nome<input required value={form.name} onChange={(event) => update("name", event.target.value)} placeholder="Seu nome" /></label><label>E-mail corporativo<input required type="email" value={form.email} onChange={(event) => update("email", event.target.value)} placeholder="voce@empresa.com.br" /></label><label>Empresa<input required value={form.company} onChange={(event) => update("company", event.target.value)} placeholder="Nome da empresa" /></label><label>Cargo<input required value={form.role} onChange={(event) => update("role", event.target.value)} placeholder="Seu cargo" /></label></div><label>Tenho interesse em<select value={form.interest} onChange={(event) => update("interest", event.target.value)}><option>Plataforma</option><option>Consultoria</option><option>Liderança</option><option>Sucessão</option><option>Educação corporativa</option></select></label><small className="form-privacy">Ao continuar, você autoriza o uso dessas informações para este contato.</small><button type="submit" className="button button-primary form-submit">Solicitar demonstração <ArrowRight size={16} /></button></form>}</div></div></section>
     </main>

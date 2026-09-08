@@ -263,3 +263,131 @@
   .redesign-page .client-lane-track, .redesign-page .feature-card, .redesign-page .feature-dialog-backdrop, .redesign-page .feature-dialog, .redesign-page .platform-phone { animation: none; }
   .redesign-page .button, .redesign-page .feature-card { transition: none; }
 }
+
+/* Jornada principal: um fluxo único, não uma sequência de cards isolados. */
+.redesign-page .journey-section { padding: 108px 0; background: #fff; }
+.redesign-page .journey-heading { max-width: 720px; margin-bottom: 42px; }
+.redesign-page .journey-heading h2 { margin: 12px 0 0; color: #222039; font-size: clamp(2rem, 3.5vw, 3.35rem); line-height: 1.02; letter-spacing: -.06em; }
+.redesign-page .journey-heading p { max-width: 560px; margin: 18px 0 0; color: #767287; font-size: 15px; line-height: 1.6; }
+.redesign-page .journey-flow { position: relative; display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 35px; }
+.redesign-page .journey-line { position: absolute; top: 18px; right: 10%; left: 10%; height: 1px; background: #e2ddf1; pointer-events: none; }
+.redesign-page .journey-line span { display: block; height: 100%; background: linear-gradient(90deg, #7357f3, #9c8aff); transition: width .45s ease; }
+.redesign-page .journey-flow button { position: relative; z-index: 1; display: grid; justify-items: center; gap: 9px; border: 0; color: #9992ab; background: transparent; font: inherit; font-size: 11px; font-weight: 800; cursor: pointer; }
+.redesign-page .journey-flow button i { display: grid; width: 36px; height: 36px; place-items: center; border: 1px solid #e1dbf2; border-radius: 50%; color: #9b94aa; background: #fff; font-size: 11px; font-style: normal; transition: color .3s, background .3s, border .3s, transform .3s; }
+.redesign-page .journey-flow button.is-active { color: #7357f3; }
+.redesign-page .journey-flow button.is-active i { border-color: #7357f3; color: #fff; background: #7357f3; box-shadow: 0 8px 20px rgba(115,87,243,.22); transform: scale(1.08); }
+.redesign-page .journey-panel { display: grid; grid-template-columns: 1.12fr .88fr; gap: 55px; align-items: center; min-height: 405px; padding: 28px; border: 1px solid #e4def5; border-radius: 24px; background: linear-gradient(145deg, #f3efff, #fff 55%, #e8f6f2); box-shadow: 0 22px 45px rgba(87, 63, 161, .1); }
+.redesign-page .journey-visual { position: relative; min-height: 345px; overflow: visible; }
+.redesign-page .journey-halo { position: absolute; top: 10%; left: 18%; width: 65%; height: 70%; border-radius: 50%; background: radial-gradient(ellipse, rgba(176, 139, 255, .35), rgba(176, 139, 255, 0) 72%); animation: soft-float 7s ease-in-out infinite; }
+.redesign-page .journey-dashboard { position: absolute; z-index: 2; top: 41px; left: 50%; width: min(410px, 78%); padding: 17px; border: 1px solid rgba(255,255,255,.9); border-radius: 16px; background: rgba(255,255,255,.88); box-shadow: 0 19px 38px rgba(67, 48, 132, .14); transform: translateX(-50%); transition: transform .4s ease, box-shadow .4s ease; }
+.redesign-page .journey-dashboard:hover { transform: translateX(-50%) translateY(-4px); box-shadow: 0 26px 45px rgba(67,48,132,.18); }
+.redesign-page .journey-dashboard-top, .redesign-page .journey-dashboard-footer { display: flex; align-items: center; justify-content: space-between; gap: 8px; color: #37304d; font-size: 10px; font-weight: 800; }
+.redesign-page .journey-dashboard-top small { margin-left: 5px; color: #aaa1b9; font-size: 8px; font-weight: 500; }
+.redesign-page .journey-status { color: #70a995; font-size: 8px; }
+.redesign-page .journey-dashboard-title { margin-top: 25px; }
+.redesign-page .journey-dashboard-title span { color: #9c93ad; font-size: 8px; font-weight: 800; letter-spacing: .12em; }
+.redesign-page .journey-dashboard-title strong { display: block; margin-top: 6px; color: #322b48; font-size: 22px; letter-spacing: -.05em; }
+.redesign-page .journey-dashboard-title p { margin: 5px 0 0; color: #8f889f; font-size: 9px; line-height: 1.35; }
+.redesign-page .journey-bars { display: flex; align-items: flex-end; gap: 9px; height: 112px; margin: 18px 3px 11px; padding: 0 8px; border-bottom: 1px solid #e5e0ee; }
+.redesign-page .journey-bars span { flex: 1; min-height: 20px; border-radius: 5px 5px 0 0; background: linear-gradient(180deg, #7357f3, #af9eff); transition: height .55s ease; }
+.redesign-page .journey-dashboard-footer { color: #9790a9; font-size: 8px; font-weight: 600; }
+.redesign-page .journey-dashboard-footer strong { color: #6a9b8d; font-weight: 800; }
+.redesign-page .journey-float { position: absolute; z-index: 3; display: inline-flex; align-items: center; gap: 6px; padding: 9px 11px; border: 1px solid #e3dcfa; border-radius: 9px; color: #817995; background: rgba(255,255,255,.9); box-shadow: 0 10px 22px rgba(66, 47, 133, .1); font: inherit; font-size: 9px; font-weight: 800; cursor: pointer; transition: transform .25s, border .25s, color .25s, box-shadow .25s; animation: data-float 5s ease-in-out infinite; }
+.redesign-page .journey-float svg { color: #7357f3; }
+.redesign-page .journey-float:hover, .redesign-page .journey-float.is-active { border-color: #a996f8; color: #7357f3; box-shadow: 0 14px 28px rgba(66,47,133,.16); transform: translateY(-3px); }
+.redesign-page .journey-float-1 { top: 11px; left: 0; animation-delay: -.4s; }
+.redesign-page .journey-float-2 { top: 11px; right: 0; animation-delay: -1.7s; }
+.redesign-page .journey-float-3 { right: -8px; bottom: 41px; animation-delay: -2.6s; }
+.redesign-page .journey-float-4 { bottom: 41px; left: -8px; animation-delay: -3.4s; }
+.redesign-page .journey-bee-note { position: absolute; z-index: 4; right: 50%; bottom: -4px; display: flex; align-items: center; gap: 9px; width: min(295px, 68%); padding: 11px; border: 1px solid #dcd3ff; border-radius: 12px; background: rgba(255,255,255,.97); box-shadow: 0 15px 30px rgba(55,37,119,.14); transform: translateX(50%); }
+.redesign-page .bee-avatar-journey { width: 43px; height: 53px; border-radius: 11px; }
+.redesign-page .journey-bee-note strong { display: block; margin-top: 4px; color: #37304d; font-size: 10px; line-height: 1.25; }
+.redesign-page .journey-copy { padding: 10px 10px 10px 0; }
+.redesign-page .journey-copy h3 { margin: 11px 0 0; color: #29233f; font-size: clamp(2rem, 3.4vw, 3rem); letter-spacing: -.06em; }
+.redesign-page .journey-copy > p { margin: 16px 0 22px; color: #767287; font-size: 14px; line-height: 1.6; }
+.redesign-page .journey-layer-detail { display: flex; align-items: center; gap: 11px; padding: 12px; border: 1px solid #e5dff3; border-radius: 11px; background: rgba(255,255,255,.7); }
+.redesign-page .journey-layer-detail .feature-icon { flex: 0 0 auto; width: 34px; height: 34px; margin: 0; }
+.redesign-page .journey-layer-detail strong, .redesign-page .journey-layer-detail span { display: block; }
+.redesign-page .journey-layer-detail strong { color: #3a3350; font-size: 11px; }
+.redesign-page .journey-layer-detail span { margin-top: 3px; color: #8b849d; font-size: 9px; line-height: 1.35; }
+.redesign-page .journey-next { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 23px; color: #aaa1b5; font-size: 9px; }
+.redesign-page .journey-next button { display: inline-flex; align-items: center; gap: 5px; border: 0; color: #7357f3; background: transparent; font: inherit; font-size: 10px; font-weight: 800; cursor: pointer; }
+
+/* Capacidades em ecossistema, com grupos e camadas. */
+.redesign-page .capability-ecosystem-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.redesign-page .capability-group { border: 1px solid #e8e3f2; border-radius: 15px; background: #fff; box-shadow: 0 8px 22px rgba(44,33,88,.04); overflow: hidden; }
+.redesign-page .capability-group summary { display: flex; align-items: center; gap: 12px; padding: 18px; color: #2e2943; list-style: none; cursor: pointer; }
+.redesign-page .capability-group summary::-webkit-details-marker { display: none; }
+.redesign-page .capability-group summary > svg { margin-left: auto; color: #8f86aa; transition: transform .25s; }
+.redesign-page .capability-group[open] summary > svg { transform: rotate(90deg); }
+.redesign-page .capability-group-index { display: grid; width: 30px; height: 30px; place-items: center; border-radius: 9px; color: #7357f3; background: #f0edff; font-size: 10px; font-weight: 850; }
+.redesign-page .capability-group summary strong, .redesign-page .capability-group summary small { display: block; }
+.redesign-page .capability-group summary strong { font-size: 14px; }
+.redesign-page .capability-group summary small { margin-top: 4px; color: #9b94a9; font-size: 9px; font-weight: 600; }
+.redesign-page .capability-group-items { display: grid; gap: 8px; padding: 0 12px 12px; }
+.redesign-page .capability-group .feature-card { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 10px; min-height: 0; padding: 11px 10px; border-radius: 10px; box-shadow: none; animation: none; }
+.redesign-page .capability-group .feature-card:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(80,56,167,.08); }
+.redesign-page .capability-group .feature-icon { width: 31px; height: 31px; margin: 0; border-radius: 8px; }
+.redesign-page .capability-group .feature-card > span { min-width: 0; display: block; }
+.redesign-page .capability-group .feature-card strong, .redesign-page .capability-group .feature-card small { display: block; }
+.redesign-page .capability-group .feature-card strong { color: #39334e; font-size: 11px; }
+.redesign-page .capability-group .feature-card small { margin-top: 3px; color: #90889f; font-size: 9px; line-height: 1.35; }
+.redesign-page .capability-group .feature-card > svg { color: #7357f3; }
+
+.redesign-page .final-cta-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.redesign-page .final-cta-actions .button-secondary { background: rgba(255,255,255,.55); }
+.redesign-page .bee-avatar-image { object-fit: contain; object-position: center; }
+.redesign-page .bee-avatar { box-sizing: border-box; padding: 2px; }
+
+@keyframes soft-float { 0%, 100% { transform: translate3d(0,0,0); } 50% { transform: translate3d(0,-7px,0); } }
+@keyframes data-float { 0%, 100% { transform: translate3d(0,0,0); } 50% { transform: translate3d(0,-4px,0); } }
+
+@media (max-width: 980px) {
+  .redesign-page .journey-panel { grid-template-columns: 1fr; gap: 28px; }
+  .redesign-page .journey-copy { padding: 0; }
+  .redesign-page .journey-visual { min-height: 350px; }
+  .redesign-page .capability-ecosystem-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  .redesign-page .journey-section { padding: 68px 0; }
+  .redesign-page .journey-heading { margin-bottom: 28px; }
+  .redesign-page .journey-heading h2 { font-size: 2.15rem; }
+  .redesign-page .journey-heading p { font-size: 14px; }
+  .redesign-page .journey-flow { gap: 3px; margin-bottom: 24px; }
+  .redesign-page .journey-line { top: 14px; right: 7%; left: 7%; }
+  .redesign-page .journey-flow button { gap: 6px; font-size: 8px; line-height: 1.15; text-align: center; }
+  .redesign-page .journey-flow button i { width: 29px; height: 29px; font-size: 9px; }
+  .redesign-page .journey-panel { display: block; min-height: 0; padding: 15px; border-radius: 17px; }
+  .redesign-page .journey-visual { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; min-height: 0; padding: 0; overflow: visible; }
+  .redesign-page .journey-halo { top: 30%; left: 15%; width: 70%; height: 45%; }
+  .redesign-page .journey-dashboard { position: relative; top: auto; left: auto; grid-column: 1 / -1; grid-row: 2; width: auto; padding: 13px; transform: none; }
+  .redesign-page .journey-dashboard:hover { transform: translateY(-2px); }
+  .redesign-page .journey-dashboard-title { margin-top: 18px; }
+  .redesign-page .journey-dashboard-title strong { font-size: 20px; }
+  .redesign-page .journey-bars { height: 88px; gap: 6px; margin-top: 14px; }
+  .redesign-page .journey-float { position: relative; inset: auto; grid-row: 1; justify-content: center; min-width: 0; padding: 8px 5px; font-size: 8px; text-align: center; }
+  .redesign-page .journey-float span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .redesign-page .journey-float-1, .redesign-page .journey-float-3 { grid-column: 1; }
+  .redesign-page .journey-float-2, .redesign-page .journey-float-4 { grid-column: 2; }
+  .redesign-page .journey-float-3, .redesign-page .journey-float-4 { grid-row: 3; }
+  .redesign-page .journey-bee-note { position: relative; right: auto; bottom: auto; grid-column: 1 / -1; grid-row: 4; width: auto; transform: none; margin-top: 3px; }
+  .redesign-page .journey-copy { padding: 24px 2px 3px; }
+  .redesign-page .journey-copy h3 { font-size: 2rem; }
+  .redesign-page .journey-copy > p { font-size: 13px; }
+  .redesign-page .journey-next { margin-top: 18px; }
+  .redesign-page .capabilities-section { padding: 68px 0; }
+  .redesign-page .capability-ecosystem-grid { gap: 9px; }
+  .redesign-page .capability-group summary { padding: 15px; }
+  .redesign-page .capability-group summary strong { font-size: 13px; }
+  .redesign-page .capability-group-items { padding: 0 9px 9px; }
+  .redesign-page .capability-group .feature-card { padding: 10px 8px; }
+  .redesign-page .capability-group .feature-card small { font-size: 8px; }
+  .redesign-page .final-cta-actions { display: grid; }
+  .redesign-page .final-cta-actions .button { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .redesign-page .journey-halo, .redesign-page .journey-float { animation: none; }
+  .redesign-page .journey-line span, .redesign-page .journey-bars span, .redesign-page .journey-flow button i { transition: none; }
+}
