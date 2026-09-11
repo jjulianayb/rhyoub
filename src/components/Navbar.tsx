@@ -5,7 +5,7 @@ import { Link, useLocation } from "react-router-dom";
 import { segments } from "@/data/segments";
 import { solutions } from "@/data/solutions";
 
-const WHATSAPP_LINK = "https://wa.me/5521991417327?text=Olá,%20vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20sessão%20estratégica.";
+const WHATSAPP_LINK = "https://wa.me/5521991417327?text=Olá,%20vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20demonstração.";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -54,21 +54,11 @@ const Navbar = () => {
           : "bg-transparent"
       }`}
     >
-      {/* Top bar */}
-      <div className={`transition-all duration-300 ${scrolled ? "h-0 overflow-hidden opacity-0" : "h-9 opacity-100"} bg-primary/5 border-b border-border/30`}>
-        <div className="container mx-auto flex items-center justify-end h-full px-6 gap-6">
-          <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="text-xs text-muted-foreground hover:text-primary transition-colors">
-            (21) 99141-7327
-          </a>
-          <a href="mailto:contato@rhyoub.com.br" className="text-xs text-muted-foreground hover:text-primary transition-colors">contato@rhyoub.com.br</a>
-        </div>
-      </div>
-
       {/* Main navbar */}
       <div className="container mx-auto flex items-center justify-between h-16 px-6">
         <Link to="/" className="flex items-center gap-1">
           <span className="text-2xl font-bold tracking-tight text-foreground">
-            you<span className="text-primary">B</span><span className="text-primary">.</span>
+            you<span className="text-primary">B</span>
           </span>
         </Link>
 
@@ -200,7 +190,7 @@ const Navbar = () => {
             rel="noopener noreferrer"
             className="hidden sm:inline-flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2 rounded-lg text-sm font-semibold transition-all duration-300 hover:bg-primary/90 hover:shadow-md hover:shadow-primary/20"
           >
-            Agendar Conversa
+            Agendar demonstração
           </a>
           <button onClick={() => setOpen(!open)} className="md:hidden p-2 rounded-lg hover:bg-secondary transition-colors" aria-label={open ? "Fechar menu" : "Abrir menu"} aria-expanded={open}>
             {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -249,7 +239,7 @@ const Navbar = () => {
                 Contato
               </Link>
               <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="sm:hidden mt-2 flex items-center justify-center gap-2 bg-primary text-primary-foreground px-5 py-3 rounded-lg text-sm font-semibold">
-                Agendar Conversa
+                Agendar demonstração
               </a>
             </div>
           </motion.div>
